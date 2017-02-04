@@ -1,0 +1,32 @@
+---
+description: junctions.js lets you add routes to your React components.
+---
+import Tab from './controls/Tab'
+import ComponentExample from './controls/ComponentExample'
+import GistVanillaExample from '../examples/GistVanilla.example'
+import GistSugarFreeExample from '../examples/GistSugarFree.example'
+
+# Junctions
+
+Add routes to your reusable components.
+
+## The Gist
+
+<Tab.Group>
+  <Tab.Item title='Vanilla React'>
+      <ComponentExample example={GistVanillaExample} />
+  </Tab.Item>
+  <Tab.Item title='Sugar Free'>
+      <ComponentExample example={GistSugarFreeExample} />
+  </Tab.Item>
+</Tab.Group>
+
+## What about react-router 4?
+
+The main difference between junctions.js and react-router is this: **junctions puts components first, react-router puts URLs first**.
+
+This means that if you're building an application, junctions will probably solve your problem better. And while some people are still building websites, most people are building applications.
+
+> Do not divide the web into documents and applications. Documents are dead.
+
+- [@thejameskyle](https://twitter.com/thejameskyle/status/824790686822129665)

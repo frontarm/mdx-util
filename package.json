@@ -1,0 +1,38 @@
+{
+  "name": "mdx-it",
+  "version": "0.1.0",
+  "description": "markdown-it based parser for MDX (i.e. JSX-infused markdown)",
+  "main": "lib/MDXIt.js",
+  "bin": {
+    "mdx": "./bin/mdx.js"
+  },
+  "scripts": {
+    "clean": "rimraf lib",
+    "build:watch": "cross-env BABEL_ENV=commonjs babel --watch --source-maps=inline -d lib/ source/",
+    "build": "cross-env BABEL_ENV=commonjs babel source --out-dir lib",
+    "prepublish": "npm run clean && npm run build"
+  },
+  "keywords": [
+    "markdown",
+    "jsx",
+    "mdx"
+  ],
+  "author": "James K Nelson <james@jamesknelson.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.22.1",
+    "babel-plugin-transform-class-properties": "^6.22.0",
+    "babel-plugin-transform-object-rest-spread": "^6.22.0",
+    "babel-preset-latest": "^6.22.0",
+    "babel-preset-react": "^6.22.0",
+    "cross-env": "^3.1.4"
+  },
+  "dependencies": {
+    "commander": "^2.9.0",
+    "front-matter": "^2.1.2",
+    "markdown-it": "^8.2.2",
+    "markdown-it-anchor": "^2.6.0",
+    "parsimmon": "^1.2.0",
+    "prismjs": "^1.6.0"
+  }
+}
