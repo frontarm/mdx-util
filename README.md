@@ -19,7 +19,7 @@ This package is a wrapper around the excellent [markdown-it](https://github.com/
 - __mdx-it__ supports theming by letting you override components at run-time<br />
   __markdown-it__ only supports theming via CSS
 
-MDX was created so that live examples can be embedded in markdown-based documentation using JSX. It was first used in the website for the [junctions](github.com/jamesknelson/junctions) router for React, and the [sitepack](https://github.com/jamesknelson/sitepack) static website generator.
+MDX was created so that live examples can be embedded in markdown-based documentation using JSX. It was first used in the website for the [junctions](https://github.com/jamesknelson/junctions) router for React, and the [sitepack](https://github.com/jamesknelson/sitepack) static website generator.
 
 ## Try It Yourself
 
