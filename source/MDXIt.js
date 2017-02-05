@@ -49,6 +49,7 @@ module.exports = class MDXIt extends MarkdownIt {
       const match = line.match(/^(import|prop)\s+(.*)$/)
 
       if (!match) {
+        bodyLines.unshift(line)
         break
       }
       else if (match[1] == 'import') {
