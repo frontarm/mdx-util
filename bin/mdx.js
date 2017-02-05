@@ -14,13 +14,14 @@ program
   .version(packageJSON.version)
   .description('Compile jsx-infused markdown (mdx) to jsx')
   .usage('[options] <file>')
+  .option('-e, --es5', 'Output ES5 (which is not quite as pretty)')
   .option('-o, --output <file>', 'Output file')
 
 program.parse(process.argv)
 
 
 if (program.args.length !== 1) {
-  console.error('You must specify exactly one input file.')
+  program.help()
   process.exit(1)
 }
 
@@ -45,6 +46,7 @@ function highlight(str, lang) {
 var md = new MDXIt({
   linkify: true,
   typographer: true,
+  es5: program.es5,
   highlight,
 })
   .use(mdAnchor)

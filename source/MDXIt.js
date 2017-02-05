@@ -1,5 +1,6 @@
 import MarkdownIt from 'markdown-it'
 import Renderer from './jsxRenderer'
+import { transform } from 'babel-core'
 
 
 const DEFAULT_FACTORIES = {
@@ -76,12 +77,12 @@ module.exports = class MDXIt extends MarkdownIt {
 
     const rendered = this.renderer.render(this.parse(body, env), this.options, env);
 
-    const output =
+    const es6 =
 `import React, { createFactory } from 'react'
 ${this.imports}
 
 module.exports = function({ ${this.props.join(', ') } }) {
-  const {
+  var {
     wrapper = createFactory('div'),
 `+Array.from(this.renderer.tags.values()).sort().map(tag =>
 `    ${tag} = ${this.getFactoryForTag(tag)},`
@@ -95,6 +96,18 @@ ${rendered}
   )
 }
 `
+
+    const output = !this.options.es5 ? es6 : transform(es6, {
+      babelrc: false,
+      retainLines: true,
+      presets: [
+        require.resolve('babel-preset-react')
+      ],
+      plugins: [
+        require.resolve('babel-plugin-transform-es2015-modules-commonjs')
+      ],
+    }).code
+
     return output
   }
 }
