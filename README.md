@@ -13,7 +13,7 @@ This package is a wrapper around the excellent [markdown-it](https://github.com/
 - __mdx-it__ only supports markdown-it plugins that modify the parser<br />
   __markdown-it__ supports all markdown-it plugins (that is kind of the point)
 
-- __mdx-it__ treats `<tags>` as JSX. You need to use `<br />`, not `<br>`.
+- __mdx-it__ treats `<tags>` as JSX. You need to use `<br />`, not `<br>`.<br />
   __markdown-it__ treats `<tags>` as standard HTML.
 
 - __mdx-it__ supports theming by letting you override components at run-time<br />
