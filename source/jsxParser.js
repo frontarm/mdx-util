@@ -55,6 +55,5 @@ exports.JSX_INLINE_PARSER = alt(
   comment,
   processing,
   declaration,
-  cdata,
-  braced_expression
+  cdata
 ).mark().skip(all);
