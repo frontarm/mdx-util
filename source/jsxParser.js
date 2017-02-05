@@ -50,7 +50,7 @@ exports.JSX_SELF_CLOSE_TAG_PARSER = self_close_tag;
 exports.JSX_CLOSE_TAG_PARSER = takeWhile(c => c !== '<').then(alt(close_tag, self_close_tag));
 
 exports.JSX_INLINE_PARSER = alt(
-  open_tag,
+  open_tag.then(attribute.many()).skip(regex(/\s*\/?>/)),
   close_tag,
   comment,
   processing,
