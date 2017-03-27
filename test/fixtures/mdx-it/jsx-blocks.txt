@@ -1,0 +1,97 @@
+.
+<SelfClosingBlock attrs={1} />
+.
+createElement(SelfClosingBlock, { attrs: 1 })
+.
+
+
+.
+<SelfClosingBlock
+  attrs={1}
+/>
+.
+createElement(SelfClosingBlock, {
+  attrs: 1
+})
+.
+
+
+.
+<Block>
+tags **can** be closed in
+
+a subsequent
+</Block>
+.
+createElement(
+  Block,
+  null,
+  "tags **can** be closed in a subsequent"
+)
+.
+
+
+.
+<Block>
+  <Block>
+
+</Block>
+</Block>
+.
+createElement(
+  Block,
+  null,
+  createElement(Block, null)
+)
+.
+
+
+.
+<Block
+  pass='something'
+>
+
+</Block>
+.
+createElement(Block, {
+  pass: 'something'
+})
+.
+
+
+.
+<Block
+</Block>
+.
+p({},
+  "<Block",
+  "</Block>",
+)
+.
+
+
+.
+<A>
+  <B>
+</A>
+</B>
+.
+p({},
+  "<A>",
+  createElement(B, null,
+    "</A>",
+  ),
+)
+.
+
+
+.
+<A>
+  <B>
+</B>
+.
+p({},
+  "<A>",
+  createElement(B, null),
+)
+.

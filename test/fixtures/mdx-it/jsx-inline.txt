@@ -1,0 +1,130 @@
+.
+We can add inline <SelfClosing /> tags.
+.
+p({},
+  "We can add inline ",
+  createElement(SelfClosing, null),
+  " tags.",
+)
+.
+
+.
+We can add <SelfClosing /> tags with <NonSelfClosing>tags.</NonSelfClosing>
+.
+p({},
+  "We can add ",
+  createElement(SelfClosing, null),
+  " tags with ",
+  createElement(NonSelfClosing, null,
+    "tags.",
+  ),
+)
+.
+
+
+When there are two inline open tags, treat the first one as text
+.
+Inline <Tag><Tag>Content</Tag>
+.
+p({},
+  "Inline <Tag>",
+  createElement(Tag, null,
+    "Content",
+  ),
+)
+.
+
+
+Ignore nested opening tags in backticks
+.
+Inline <Tag>`<Tag>`Content</Tag>
+.
+p({},
+  "Inline ",
+  createElement(Tag, null,
+    code({}, "<Tag>"),
+    "Content",
+  ),
+)
+.
+
+
+Ignore nested closing tags in backticks
+.
+Inline <Tag>Content `</Tag>`</Tag>
+.
+p({},
+  "Inline ",
+  createElement(Tag, null,
+    "Content ",
+    code({}, "</Tag>"),
+  ),
+)
+.
+
+
+.
+We can <em>intermix **Markdown** and JSX.</em>
+.
+p({},
+  "We can ",
+  createElement("em", null,
+    "intermix ",
+    strong({},
+      "Markdown",
+    ),
+    " and JSX.",
+  ),
+)
+.
+
+
+.
+We can <em>intermix **Markdown** and JSX
+within</em> the same block.
+.
+p({},
+  "We can ",
+  createElement("em", null,
+    "intermix ",
+    strong({},
+      "Markdown",
+    ),
+    " and JSX",
+    "within",
+  ),
+  " the same block.",
+)
+.
+
+
+.
+Inline tags <strong>must be closed within
+
+the same block</strong>.
+.
+p({},
+  "Inline tags <strong>must be closed within",
+),
+p({},
+  "the same block</strong>.",
+)
+.
+
+
+.
+We can <Inline>nest <Inline>inline</Inline> tags</Inline>.
+.
+p({},
+  "We can ",
+  createElement(Inline, null,
+    "nest ",
+    createElement(Inline, null,
+      "inline",
+    ),
+    " tags",
+  ),
+  ".",
+)
+.
+

@@ -10,7 +10,8 @@
     "clean": "rimraf lib",
     "build:watch": "cross-env BABEL_ENV=commonjs babel --watch --source-maps=inline -d lib/ source/",
     "build": "cross-env BABEL_ENV=commonjs babel source --out-dir lib",
-    "prepublish": "npm run clean && npm run build"
+    "prepublish": "npm run clean && npm run build",
+    "test": "npm run build && mocha test/*.test.js"
   },
   "keywords": [
     "markdown",
@@ -23,12 +24,15 @@
     "babel-plugin-transform-class-properties": "^6.22.0",
     "babel-plugin-transform-object-rest-spread": "^6.22.0",
     "babel-preset-latest": "^6.22.0",
-    "cross-env": "^3.1.4"
+    "cross-env": "^3.1.4",
+    "markdown-it-testgen": "^0.1.4",
+    "mocha": "^3.2.0"
   },
   "dependencies": {
     "babel-core": "^6.22.1",
-    "babel-preset-react": "^6.22.0",
+    "babel-plugin-syntax-jsx": "^6.18.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.22.0",
+    "babel-plugin-transform-react-jsx": "^6.23.0",
     "commander": "^2.9.0",
     "front-matter": "^2.1.2",
     "markdown-it": "^8.2.2",

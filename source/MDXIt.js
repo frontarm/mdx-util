@@ -21,7 +21,7 @@ function mdJSX(md) {
 module.exports = class MDXIt extends MarkdownIt {
   constructor (options={}) {
     if (options.initialIndent === undefined) {
-      options.initialIndent = 6
+      options.initialIndent = options.unwrapped ? 0 : 6
     }
 
     super(options)
@@ -78,7 +78,7 @@ module.exports = class MDXIt extends MarkdownIt {
 
     const rendered = this.renderer.render(this.parse(body, env), this.options, env);
 
-    const es6 =
+    const es6 = this.options.unwrapped ? rendered+'\n' : 
 `import React, { createFactory } from 'react'
 ${this.imports}
 

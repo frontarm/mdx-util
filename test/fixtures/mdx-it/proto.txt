@@ -1,0 +1,26 @@
+.
+[__proto__]
+
+[__proto__]: blah
+.
+p({},
+  a({"href": "blah"},
+    strong({},
+      "proto",
+    ),
+  ),
+)
+.
+
+
+.
+[hasOwnProperty]
+
+[hasOwnProperty]: blah
+.
+p({},
+  a({"href": "blah"},
+    "hasOwnProperty",
+  ),
+)
+.

@@ -1,0 +1,26 @@
+.
+`We can <em>intermix **Markdown** and JSX.</em>`
+.
+p({},
+  code({}, "We can <em>intermix **Markdown** and JSX.</em>"),
+)
+.
+
+
+.
+```jsx
+<MyComp />
+```
+.
+codeBlock({"className": "language-jsx"}, "<MyComp />\n")
+.
+
+
+
+.
+```jsx
+{test}
+```
+.
+codeBlock({"className": "language-jsx"}, "{test}\n")
+.

@@ -95,7 +95,15 @@ const default_rules = {
     return slf.indent(tokens[idx].content.trim());
   },
   jsx_inline: function (tokens, idx, options, env, slf) {
-    return slf.indent(tokens[idx].content.trim());
+    const indent = tokens[idx].nesting
+    if (indent === -1) {
+      slf.indentLevel -= 2 
+    }
+    const str = slf.indent(tokens[idx].content.trim());
+    if (indent === 1) {
+      slf.indentLevel += 2
+    }
+    return str
   },
 }
 

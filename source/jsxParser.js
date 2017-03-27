@@ -36,24 +36,12 @@ var attr_value  = alt(braced_expression, unquoted, single_quoted, double_quoted)
 var attribute   = whitespace.then(attr_name).then(regex(/\s*=\s*/).then(attr_value).atMost(1));
 
 var open_tag    = regex(/<([_A-Za-z][_A-Za-z0-9.\-]*)/, 1);
-
 var close_tag   = regex(/<\/([_A-Za-z][_A-Za-z0-9.\-]*)\s*>/, 1);
 var self_close_tag = regex(/<([_A-Za-z][_A-Za-z0-9.\-]*)/, 1).then(attribute.many()).skip(regex(/\s*\/>/));
 
-var comment     = regex(/<!---->|<!--(?:-?[^>-])(?:-?[^-])*-->/);
-var processing  = regex(/<[?].*?[?]>/);
-var declaration = regex(/<![A-Z]+\s+[^>]*>/);
-var cdata       = regex(/<!\[CDATA\[[\s\S]*?\]\]>/);
-
 exports.JSX_OPEN_TAG_PARSER = open_tag.mark().skip(all);
+exports.JSX_INLINE_OPEN_TAG_PARSER = open_tag.skip(attribute.many()).skip(regex(/\s*\/?>/)).mark().skip(all);
 exports.JSX_SELF_CLOSE_TAG_PARSER = self_close_tag;
+exports.JSX_INLINE_SELF_CLOSE_TAG_PARSER = self_close_tag.mark().skip(all);
 exports.JSX_CLOSE_TAG_PARSER = takeWhile(c => c !== '<').then(alt(close_tag, self_close_tag));
-
-exports.JSX_INLINE_PARSER = alt(
-  open_tag.then(attribute.many()).skip(regex(/\s*\/?>/)),
-  close_tag,
-  comment,
-  processing,
-  declaration,
-  cdata
-).mark().skip(all);
+exports.JSX_INLINE_CLOSE_TAG_PARSER = close_tag.mark().skip(all);

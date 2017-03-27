@@ -1,4 +1,5 @@
-const parser = require('./jsxParser')
+import parser from './jsxParser'
+import { transform } from 'babel-core'
 
 const {
   JSX_INLINE_PARSER,
@@ -6,6 +7,21 @@ const {
   JSX_CLOSE_TAG_PARSER,
   JSX_SELF_CLOSE_TAG_PARSER
 } = parser;
+
+
+function transformJSX(code) {
+  try {
+    return transform(code, {
+      babelrc: false,
+      plugins: [
+        'babel-plugin-syntax-jsx',
+        ['babel-plugin-transform-react-jsx', { pragma: 'createElement' }]]
+      }).code.replace(/;$/, '')
+  }
+  catch (e) {
+    return
+  }
+}
 
 
 module.exports = function jsx_block(state, startLine, endLine, silent) {
@@ -21,7 +37,7 @@ module.exports = function jsx_block(state, startLine, endLine, silent) {
 
   if (!result.status) { return false; }
 
-  type = result.value.value
+  type = result.value
 
   if (silent) {
     // true if this sequence can be a terminator, false otherwise
@@ -30,13 +46,22 @@ module.exports = function jsx_block(state, startLine, endLine, silent) {
 
   nextLine = startLine + 1;
 
+  // Find the close of this block, if it exists
+  // 
+  // - If this tag is a self closing tag, we're done
+  // - Otherwise, find the first candidate for a closing tag that compiles
+  // - While searching for candidates, make sure to swap any `<markdown>` blocks with a placeholder
+  // - If no there is no closing tag which makes this compile, then it isn't a jsx block
+
   // If we are here - we detected HTML block.
   // Let's roll down till block end.
-  const isSingleLine =
-    new RegExp('</\\s*'+type+'\\s*>$').test(lineText) ||
+  const isSelfClosing =
     JSX_SELF_CLOSE_TAG_PARSER.parse(lineText.trim()).status
 
-  if (!isSingleLine) {
+  let content
+  let js
+
+  if (!isSelfClosing) {
     for (; nextLine < endLine; nextLine++) {
       if (state.sCount[nextLine] < state.blkIndent) { break; }
 
@@ -45,17 +70,32 @@ module.exports = function jsx_block(state, startLine, endLine, silent) {
       lineText = state.src.slice(pos, max);
       result = JSX_CLOSE_TAG_PARSER.parse(lineText)
       if (result.value === type) {
-        if (lineText.length !== 0) { nextLine++; }
-        break;
+        content = state.getLines(startLine, nextLine + 1, state.blkIndent, true)
+
+        js = transformJSX(content)
+
+        if (js) {
+          nextLine++
+          break;
+        }
       }
     }
+  }
+
+  if (!js) {
+     content = state.getLines(startLine, nextLine, state.blkIndent, true)
+     js = transformJSX(content)
+  }
+
+  if (!js) {
+    return false
   }
 
   state.line = nextLine;
 
   token         = state.push('jsx_block', '', 0);
   token.map     = [ startLine, nextLine ];
-  token.content = state.getLines(startLine, nextLine, state.blkIndent, true);
+  token.content = js;
 
   return true;
 };

@@ -16,6 +16,7 @@ program
   .usage('[options] <file>')
   .option('-e, --es5', 'Output ES5 (which is not quite as pretty)')
   .option('-o, --output <file>', 'Output file')
+  .option('-u, --unwrapped', "Don't wrap the content in a React component")
 
 program.parse(process.argv)
 
@@ -47,6 +48,7 @@ var md = new MDXIt({
   linkify: true,
   typographer: true,
   es5: program.es5,
+  unwrapped: program.unwrapped,
   highlight,
 })
   .use(mdAnchor)
@@ -57,11 +59,11 @@ var data = frontMatter(content)
 var env = {}
 var rendered = md.render(data.body, env)
 
-
-rendered += `
-module.exports.meta = ${JSON.stringify(data.attributes, null, 2)}
-`
-
+if (!program.unwrapped) {
+  rendered += `
+  module.exports.meta = ${JSON.stringify(data.attributes, null, 2)}
+  `
+}
 
 if (program.output) {
   fs.writeFileSync(program.output, rendered)
