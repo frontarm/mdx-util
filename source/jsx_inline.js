@@ -1,29 +1,8 @@
 // Process JSX tags.
 // Based on https://github.com/osnr/markdown-it-jsx/blob/8182cd42db551b03f0f73653a4fbee0948807dd4/lib/jsx_inline.js
 
-import parser from './jsxParser'
-import { transform } from 'babel-core'
-
-const {
-  JSX_INLINE_OPEN_TAG_PARSER,
-  JSX_INLINE_CLOSE_TAG_PARSER,
-  JSX_INLINE_SELF_CLOSE_TAG_PARSER
-} = parser;
-
-
-function transformJSX(code) {
-  try {
-    return transform(code, {
-      babelrc: false,
-      plugins: [
-        'babel-plugin-syntax-jsx',
-        ['babel-plugin-transform-react-jsx', { pragma: 'createElement' }]]
-      }).code.replace(/;$/, '')
-  }
-  catch (e) {
-    return
-  }
-}
+import { JSX_INLINE_OPEN_TAG_PARSER, JSX_INLINE_CLOSE_TAG_PARSER, JSX_INLINE_SELF_CLOSE_TAG_PARSER } from './jsxParser'
+import transformJSX from './transformJSX'
 
 
 // Iterate through a JSX tag's content until the closing tag is found, making
@@ -62,7 +41,7 @@ function isLetter(ch) {
 }
 
 
-module.exports = function jsx_inline(state, silent) {
+export default function jsx_inline(state, silent) {
   var result, max, token,
       pos = state.pos;
 

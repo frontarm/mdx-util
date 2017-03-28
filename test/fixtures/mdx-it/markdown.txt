@@ -1,75 +1,75 @@
-#.
-#<Block>
-#  # Test 1
-#  <markdown>
-#
-#    # Markdown can be embedded within <markdown> tags
-#
-#        Here is some code
-#
-#  </markdown>
-#</Block>
-#.
-#createElement(Block, {},
-#  "# Test 1",
-#  markdown({},
-#    h1({}, "Markdown can be embedded within <markdown> tags"),
-#    codeBlock({},
-#      "Here is some code"
-#    )
-#  )
-#)
-#.
-#
-#
-#
-#.
-#<Block>
-#  <markdown>
-#    <Block>
-#      # JSX blocks can be embedded within embedded markdown
-#    </Block>
-#  </markdown>
-#</Block>
-#.
-#createElement(Block, {},
-#  markdown({},
-#    createElement(Block, {},
-#      "# JSX blocks can be embedded within embedded markdown",
-#    )
-#  )
-#)
-#.
-#
-#
-#
-#.
-#<Block>
-#  <markdown>
-#    # `<markdown>` tags must end at the same indentation level that they started at
-#    </markdown>
-#</Block>
-#.
-#createElement(Block, {},
-#  markdown({},
-#    "# `<markdown>` tags must end at the same indentation level that they started #at",
-#  )
-#)
-#.
-#
-#
-#.
-#<Block>
-#  <markdown>
-#    # `<markdown>` tag content must
-#  not reduce in indentation
-#  </markdown>
-#</Block>
-#.
-#createElement(Block, {},
-#  markdown({},
-#    "# `<markdown>` tag content must\n  not reduce in indentation",
-#  )
-#)
-#.
-#
+.
+<Block>
+  # Test 1
+  <markdown>
+
+    # Markdown can be embedded within <markdown> tags
+
+        Here is some code
+
+  </markdown>
+</Block>
+.
+createElement(Block, {},
+  "# Test 1",
+  markdown({},
+    h1({}, "Markdown can be embedded within <markdown> tags"),
+    codeBlock({},
+      "Here is some code"
+    )
+  )
+)
+.
+
+
+
+.
+<Block>
+  <markdown>
+    <Block>
+      # JSX blocks can be embedded within embedded markdown
+    </Block>
+  </markdown>
+</Block>
+.
+createElement(Block, {},
+  markdown({},
+    createElement(Block, {},
+      "# JSX blocks can be embedded within embedded markdown",
+    )
+  )
+)
+.
+
+
+
+.
+<Block>
+  <markdown>
+    # `<markdown>` tags must end at the same indentation level that they started at
+    </markdown>
+</Block>
+.
+createElement(Block, {},
+  markdown({},
+    "# `<markdown>` tags must end at the same indentation level that they started at",
+  )
+)
+.
+
+
+.
+<Block>
+  <markdown>
+    # `<markdown>` tag content must
+  not reduce in indentation
+  </markdown>
+</Block>
+.
+createElement(Block, {},
+  markdown({},
+    "# `<markdown>` tag content must\n  not reduce in indentation",
+  )
+)
+.
+

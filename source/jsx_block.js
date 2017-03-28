@@ -1,30 +1,8 @@
-import parser from './jsxParser'
-import { transform } from 'babel-core'
-
-const {
-  JSX_INLINE_PARSER,
-  JSX_OPEN_TAG_PARSER,
-  JSX_CLOSE_TAG_PARSER,
-  JSX_SELF_CLOSE_TAG_PARSER
-} = parser;
+import { JSX_OPEN_TAG_PARSER, JSX_CLOSE_TAG_PARSER, JSX_SELF_CLOSE_TAG_PARSER } from './jsxParser'
+import transformJSX from './transformJSX'
 
 
-function transformJSX(code) {
-  try {
-    return transform(code, {
-      babelrc: false,
-      plugins: [
-        'babel-plugin-syntax-jsx',
-        ['babel-plugin-transform-react-jsx', { pragma: 'createElement' }]]
-      }).code.replace(/;$/, '')
-  }
-  catch (e) {
-    return
-  }
-}
-
-
-module.exports = function jsx_block(state, startLine, endLine, silent) {
+export default function jsx_block(state, startLine, endLine, silent) {
   var i, nextLine, token, lineText, result, type,
       pos = state.bMarks[startLine] + state.tShift[startLine],
       max = state.eMarks[startLine];
@@ -45,13 +23,6 @@ module.exports = function jsx_block(state, startLine, endLine, silent) {
   }
 
   nextLine = startLine + 1;
-
-  // Find the close of this block, if it exists
-  // 
-  // - If this tag is a self closing tag, we're done
-  // - Otherwise, find the first candidate for a closing tag that compiles
-  // - While searching for candidates, make sure to swap any `<markdown>` blocks with a placeholder
-  // - If no there is no closing tag which makes this compile, then it isn't a jsx block
 
   // If we are here - we detected HTML block.
   // Let's roll down till block end.

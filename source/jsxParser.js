@@ -4,9 +4,8 @@
 // Extended to use parsimmon parser generator instead of regexes so we can do
 // balanced-brace matching to consume JSX attribute values (which are arbitrary JS expressions).
 
-'use strict';
+import parsimmon from 'parsimmon'
 
-var parsimmon = require('parsimmon');
 var regex = parsimmon.regex;
 var string = parsimmon.string;
 var whitespace = parsimmon.whitespace;
@@ -39,9 +38,9 @@ var open_tag    = regex(/<([_A-Za-z][_A-Za-z0-9.\-]*)/, 1);
 var close_tag   = regex(/<\/([_A-Za-z][_A-Za-z0-9.\-]*)\s*>/, 1);
 var self_close_tag = regex(/<([_A-Za-z][_A-Za-z0-9.\-]*)/, 1).then(attribute.many()).skip(regex(/\s*\/>/));
 
-exports.JSX_OPEN_TAG_PARSER = open_tag.mark().skip(all);
-exports.JSX_INLINE_OPEN_TAG_PARSER = open_tag.skip(attribute.many()).skip(regex(/\s*\/?>/)).mark().skip(all);
-exports.JSX_SELF_CLOSE_TAG_PARSER = self_close_tag;
-exports.JSX_INLINE_SELF_CLOSE_TAG_PARSER = self_close_tag.mark().skip(all);
-exports.JSX_CLOSE_TAG_PARSER = takeWhile(c => c !== '<').then(alt(close_tag, self_close_tag));
-exports.JSX_INLINE_CLOSE_TAG_PARSER = close_tag.mark().skip(all);
+export const JSX_OPEN_TAG_PARSER = open_tag.mark().skip(all);
+export const JSX_INLINE_OPEN_TAG_PARSER = open_tag.skip(attribute.many()).skip(regex(/\s*\/?>/)).mark().skip(all);
+export const JSX_SELF_CLOSE_TAG_PARSER = self_close_tag;
+export const JSX_INLINE_SELF_CLOSE_TAG_PARSER = self_close_tag.mark().skip(all);
+export const JSX_CLOSE_TAG_PARSER = takeWhile(c => c !== '<').then(alt(close_tag, self_close_tag));
+export const JSX_INLINE_CLOSE_TAG_PARSER = close_tag.mark().skip(all);

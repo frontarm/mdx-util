@@ -1,6 +1,8 @@
 import MarkdownIt from 'markdown-it'
 import Renderer from './jsxRenderer'
 import { transform } from 'babel-core'
+import jsx_inline from './jsx_inline'
+import jsx_block from './jsx_block'
 
 
 const DEFAULT_FACTORIES = {
@@ -10,8 +12,8 @@ const DEFAULT_FACTORIES = {
 
 function mdJSX(md) {
   // JSX should entirely replace embedded HTML.
-  md.inline.ruler.before('html_inline', 'jsx_inline', require('./jsx_inline'));
-  md.block.ruler.before('html_block', 'jsx_block', require('./jsx_block'), [ 'paragraph', 'reference', 'blockquote', 'list' ]);
+  md.inline.ruler.before('html_inline', 'jsx_inline', jsx_inline);
+  md.block.ruler.before('html_block', 'jsx_block', jsx_block, [ 'paragraph', 'reference', 'blockquote', 'list' ]);
 
   md.disable('html_inline');
   md.disable('html_block');
@@ -82,7 +84,7 @@ module.exports = class MDXIt extends MarkdownIt {
 `import React, { createFactory } from 'react'
 ${this.imports}
 
-module.exports = function({ ${this.props.join(', ') } }) {
+export default function({ ${this.props.join(', ') } }) {
   var {
     wrapper = createFactory('div'),
 `+Array.from(this.renderer.tags.values()).sort().map(tag =>
@@ -101,10 +103,8 @@ ${rendered}
     const output = !this.options.es5 ? es6 : transform(es6, {
       babelrc: false,
       retainLines: true,
-      presets: [
-        require.resolve('babel-preset-react')
-      ],
       plugins: [
+        require.resolve('babel-plugin-syntax-trailing-function-commas'),
         require.resolve('babel-plugin-transform-es2015-modules-commonjs')
       ],
     }).code
