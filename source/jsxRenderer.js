@@ -91,18 +91,7 @@ const default_rules = {
   },
 
 
-  jsx_block: function (tokens, idx, options, env, slf) {
-    const indent = tokens[idx].nesting
-    if (indent === -1) {
-      slf.indentLevel -= 2 
-    }
-    const str = slf.indent(tokens[idx].content.trim());
-    if (indent === 1) {
-      slf.indentLevel += 2
-    }
-    return str
-  },
-  jsx_inline: function (tokens, idx, options, env, slf) {
+  jsx: function (tokens, idx, options, env, slf) {
     const indent = tokens[idx].nesting
     if (indent === -1) {
       slf.indentLevel -= 2 

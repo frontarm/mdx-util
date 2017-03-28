@@ -120,7 +120,7 @@ export default function jsx_block(state, startLine, endLine, silent) {
 
   if (!silent) {
     if (markdownContents.length === 0) {
-      token         = state.push('jsx_block', '', 0);
+      token         = state.push('jsx', '', 0);
       token.map     = [ startLine, nextLine ];
       token.content = js;
     }
@@ -136,26 +136,26 @@ export default function jsx_block(state, startLine, endLine, silent) {
         }
 
         if (startLine !== line) {
-          token         = state.push('jsx_block', '', first);
+          token         = state.push('jsx', '', first);
           token.content = jsLines.slice(startLine, line).join('\n').replace(/,$/, '')
         }
 
         first = 0
         line++
 
-        token         = state.push('jsx_block', '', 1);
-        token.content = 'markdown({}'
+        token         = state.push('jsx', '', 1);
+        token.content = 'wrapper({}'
 
         state.blkIndent = blkIndent
         state.md.block.tokenize(state, contentStart, contentEnd);
 
-        token         = state.push('jsx_block', '', -1);
+        token         = state.push('jsx', '', -1);
         token.content = ')'
       }
 
       state.originalBlkIndent = originalBlkIndent
 
-      token         = state.push('jsx_block', '', first - 1);
+      token         = state.push('jsx', '', first - 1);
       token.content = jsLines.slice(line).join('\n')
     }
   }

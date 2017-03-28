@@ -14,7 +14,7 @@ createElement(
   Block,
   null,
   "# Test 1",
-  markdown({},
+  wrapper({},
     h1({},
       "Markdown can be embedded within <markdown> tags",
     ),
@@ -37,12 +37,12 @@ createElement(
 createElement(
   Block,
   null,
-  markdown({},
+  wrapper({},
     h1({},
       "Markdown block 1",
     ),
   ),
-  markdown({},
+  wrapper({},
     h1({},
       "Markdown block 2",
     ),
@@ -63,7 +63,7 @@ createElement(
 createElement(
   Block,
   null,
-  markdown({},
+  wrapper({},
     createElement(
       Block,
       null,

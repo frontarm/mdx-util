@@ -1,6 +1,6 @@
 {
   "name": "mdx-it",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "description": "markdown-it based parser for MDX (i.e. JSX-infused markdown)",
   "main": "lib/MDXIt.js",
   "bin": {

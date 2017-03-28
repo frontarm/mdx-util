@@ -61,7 +61,7 @@ var rendered = md.render(data.body, env)
 
 if (!program.unwrapped) {
   rendered += `
-export const meta = ${JSON.stringify(data.attributes, null, 2)}
+module.exports.meta = ${JSON.stringify(data.attributes, null, 2)}
 `
 }
 

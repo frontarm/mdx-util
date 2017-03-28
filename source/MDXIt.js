@@ -6,7 +6,7 @@ import jsx_block from './jsx_block'
 
 
 const DEFAULT_FACTORIES = {
-  'codeBlock': '(props, children) => <pre {...props}><code dangerouslySetInnerHTML={{ __html: children || props.children }} /></pre>'
+  'codeBlock': '(props, children) => createElement("pre", props, createElement("code", { dangerouslySetInnerHTML: { __html: children || props.children } }))'
 }
 
 
@@ -84,7 +84,9 @@ module.exports = class MDXIt extends MarkdownIt {
 `import React, { createFactory } from 'react'
 ${this.imports}
 
-export default function({ ${this.props.join(', ') } }) {
+const createElement = React.createElement
+
+module.exports = function({ ${this.props.join(', ') } }) {
   var {
     wrapper = createFactory('div'),
 `+Array.from(this.renderer.tags.values()).sort().map(tag =>

@@ -84,7 +84,7 @@ export default function jsx_inline(state, silent) {
     }
 
     if (!silent) {
-      token         = state.push('jsx_inline', '', 0);
+      token         = state.push('jsx', '', 0);
       token.content = js
     }
 
@@ -105,19 +105,19 @@ export default function jsx_inline(state, silent) {
 
   if (!silent) {
     if (content.length === 0) {
-      token         = state.push('jsx_inline', '', 0);
+      token         = state.push('jsx', '', 0);
       token.content = js
     }
     else {
       state.pos = contentStart;
       state.posMax = contentEnd;
 
-      token         = state.push('jsx_inline', '', 1);
+      token         = state.push('jsx', '', 1);
       token.content = js.slice(0, js.length - 1)
       
       state.md.inline.tokenize(state);
 
-      token         = state.push('jsx_inline', '', -1);
+      token         = state.push('jsx', '', -1);
       token.content = ')'
     }
   }
