@@ -10,17 +10,45 @@
   </markdown>
 </Block>
 .
-createElement(Block, {},
+createElement(
+  Block,
+  null,
   "# Test 1",
   markdown({},
-    h1({}, "Markdown can be embedded within <markdown> tags"),
-    codeBlock({},
-      "Here is some code"
-    )
-  )
+    h1({},
+      "Markdown can be embedded within <markdown> tags",
+    ),
+    code({}, "Here is some code\n"),
+  ),
 )
 .
 
+
+.
+<Block>
+  <markdown>
+    # Markdown block 1
+  </markdown>
+  <markdown>
+    # Markdown block 2
+  </markdown>
+</Block>
+.
+createElement(
+  Block,
+  null,
+  markdown({},
+    h1({},
+      "Markdown block 1",
+    ),
+  ),
+  markdown({},
+    h1({},
+      "Markdown block 2",
+    ),
+  ),
+)
+.
 
 
 .
@@ -32,12 +60,16 @@ createElement(Block, {},
   </markdown>
 </Block>
 .
-createElement(Block, {},
+createElement(
+  Block,
+  null,
   markdown({},
-    createElement(Block, {},
-      "# JSX blocks can be embedded within embedded markdown",
-    )
-  )
+    createElement(
+      Block,
+      null,
+      "# JSX blocks can be embedded within embedded markdown"
+    ),
+  ),
 )
 .
 
@@ -50,10 +82,14 @@ createElement(Block, {},
     </markdown>
 </Block>
 .
-createElement(Block, {},
-  markdown({},
-    "# `<markdown>` tags must end at the same indentation level that they started at",
-  )
+p({},
+  createElement(Block, null,
+    createElement("markdown", null,
+      "# ",
+      code({}, "<markdown>"),
+      " tags must end at the same indentation level that they started at",
+    ),
+  ),
 )
 .
 
@@ -66,10 +102,16 @@ createElement(Block, {},
   </markdown>
 </Block>
 .
-createElement(Block, {},
-  markdown({},
-    "# `<markdown>` tag content must\n  not reduce in indentation",
-  )
+p({},
+  createElement(Block, null,
+    createElement("markdown", null,
+      "# ",
+      code({}, "<markdown>"),
+      " tag content must",
+      "not reduce in indentation",
+    ),
+  ),
 )
 .
+
 
