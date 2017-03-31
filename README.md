@@ -1,8 +1,8 @@
 <img src="https://raw.githubusercontent.com/jamesknelson/mdxc/master/media/logo.png" alt="MDXC" width="250" />
 
-*A tool to convert Markdown files into React components.*
+*A tool to convert Markdown files into React components.* [Try it yourself](http://dump.jamesknelson.com/mdxc-playground.html) with the MDXC Playground.
 
-[![npm version](https://img.shields.io/npm/v/mdx-loader.svg)](https://www.npmjs.com/package/mdx-loader)
+[![npm version](https://img.shields.io/npm/v/mdxc.svg)](https://www.npmjs.com/package/mdxc)
 
 MDX is a simpler way to write content for you React applications. While standard Markdown compiles to a string of HTML, MDX compiles directly to JavaScript. **If you're writing a React app, MDX is both easier to use *and* more flexible than standard Markdown.**
 
