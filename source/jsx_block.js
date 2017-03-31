@@ -149,8 +149,13 @@ export default function jsx_block(state, startLine, endLine, silent) {
         token         = state.push('jsx', '', 1);
         token.content = 'wrapper({}'
 
+        const oldLineMax = state.lineMax
+
         state.blkIndent = blkIndent
+        state.lineMax = contentEnd
         state.md.block.tokenize(state, contentStart, contentEnd);
+
+        state.lineMax = oldLineMax
 
         token         = state.push('jsx', '', -1);
         token.content = ')'
