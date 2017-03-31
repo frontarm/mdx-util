@@ -1,5 +1,4 @@
-mdxc
-====
+<img src="https://raw.githubusercontent.com/jamesknelson/mdxc/master/media/logo.png" alt="MDXC" />
 
 *A tool to convert Markdown files into React components.*
 
@@ -28,11 +27,11 @@ mdxc example.mdx
 
 Other ways to use MDX include:
 
-- Use it with [Sitepack]() to build static websites
-- Use it with [Webpack]()
-- Use the [API]() directly
+- Use it with [Sitepack](#sitepack) to build static websites
+- Use it with [Webpack](#webpack-with-mdx-loader)
+- Use the [API](#api) directly
 
-For details, jump to the [usage]() section
+For details, jump to the [usage](#using-mdx) section
 
 ## Examples
 
@@ -221,7 +220,7 @@ createElement('input', {
 
 When MDX generates code for your Markdown, it doesn't directly generate a JSX `<tag />` (or its JavaScript equivalent `React.createElement('tag')`). Instead, it calls a *factory function* with the tag's props and children.
 
-Generally, you don't need to worry about factories. MDX provides default factories that just render the tag -- as expected. But variety is the spice of life, so in all likelihood you'll sometimes want to customise the behavior of certain tags. And doing so is as simple as passing an object to your generated component's `factories` prop!
+Generally, you don't need to worry about factories. MDX provides default factories that just render the tag -- as expected. But variety is the spice of life, so in all likelihood you'll sometimes want to customize the behavior of certain tags. And doing so is as simple as passing an object to your generated component's `factories` prop!
 
 #### Adding `pushState` support to links
 
@@ -310,7 +309,7 @@ Options:
 
 [Sitepack](http://github.com/jamesknelson/sitepack) is a wrapper around Webpack. It gives you a way to add pages to your website using plain-old `require()`, it handles the nasty parts of Webpack configuration for you, and it does all this while performing the magic required to build a static HTML version of each of your pages. As it happens, the MDXC website is built with Sitepack.
 
-If your plan is to use MDX to write an actual *website* (you know, with pages and links and no "login" button), then Sitepack is worth giving a try. It's documentation is still in its infancy, but you can get around this by using the **sitepack-react-starter-kit** which has supports MDX out of the box.
+If your plan is to use MDX to write an actual *website* (you know, with pages and links and no "login" button), then Sitepack is worth giving a try. It's documentation is still in its infancy, but you can get around this by using the **sitepack-react-starter-kit** which supports MDX out of the box.
 
 ```bash
 git clone https://github.com/jamesknelson/sitepack-react-starter-kit.git
@@ -447,7 +446,7 @@ module.exports = function mdxLoader(content) {
 - [junctions](https://junctions.js.org), a router for React ([website source](https://github.com/jamesknelson/junctions/tree/master/docs))
 - *create a PR to add your own site!*
 
-## Acknowledgements
+## Acknowledgments
 
 Mad props to [markdown-it](https://github.com/markdown-it/markdown-it) for doing the hard yards which make MDXC possible. Also, [markdown-it-jsx](https://github.com/osnr/markdown-it-jsx) provided the base for parsing JSX tags out of Markdown files. Finally, there would be no use making MDXC unless React, Webpack and Babel already existed.
 
