@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   wrapper: 'SiteWrapper',
   title: "mdxc",
   description: "mdxc - A tool to convert Markdown into React components",

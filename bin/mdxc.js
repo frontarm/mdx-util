@@ -10,11 +10,11 @@ var packageJSON = require('../package.json')
 
 program
   .version(packageJSON.version)
-  .description('Compile jsx-infused markdown (mdx) to jsx')
+  .description('Compile mdx to js')
   .usage('[options] <file>')
-  .option('-c, --common', 'Use commonJS modules (i.e. module.exports and require)')
-  .option('-o, --output <file>', 'Output file')
-  .option('-u, --unwrapped', "Don't wrap the content in a React component")
+  .option('-c, --common', 'use commonJS modules (i.e. module.exports and require)')
+  .option('-o, --output <file>', 'output to file instead of console')
+  .option('-u, --unwrapped', "don't wrap the content in a React component")
 
 program.parse(process.argv)
 

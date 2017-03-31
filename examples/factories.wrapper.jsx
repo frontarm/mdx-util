@@ -34,9 +34,6 @@ function headingFactory(type, props, ...children) {
 }
 
 
-console.log(Props)
-
-
 export default function FactoriesExample() {
   // Render the content of our `props` example, but replacing h1, h2 and h3
   // elements with the result of our `headingFactory` function.

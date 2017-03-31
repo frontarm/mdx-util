@@ -25,6 +25,32 @@ createElement(
 
 
 .
+<div>
+  # Markdown {"doesn't".toUpperCase()} work here.
+  <markdown>
+    *But does work here*.
+  </markdown>
+</div>
+.
+createElement(
+  "div",
+  null,
+  "# Markdown ",
+  "doesn't".toUpperCase(),
+  " work here.",
+  wrapper({},
+    p({},
+      em({},
+        "But does work here",
+      ),
+      ".",
+    ),
+  ),
+)
+.
+
+
+.
 <Block>
   <markdown>
     # Markdown block 1
