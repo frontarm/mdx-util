@@ -17,7 +17,7 @@ function parseMarkdownContent(state, startIndent, startLine, maxLine) {
     if (blkIndent === undefined) {
       blkIndent = indent
     }
-    else if (lineText === '</markdown>' && state.sCount[nextLine] === startIndent) {
+    else if (lineText.slice(0, '</markdown>'.length) === '</markdown>' && state.sCount[nextLine] === startIndent) {
       return {
         key: '$$mdx_block_'+Math.random().toString(36).substring(7),
         contentStart: startLine,
@@ -56,15 +56,16 @@ export default function jsx_block(state, startLine, endLine, silent) {
 
   // If we are here - we detected HTML block.
   // Let's roll down till block end.
-  const isSelfClosing =
-    JSX_SELF_CLOSE_TAG_PARSER.parse(lineText.trim()).status
+  const isSingleLine =
+    JSX_SELF_CLOSE_TAG_PARSER.parse(lineText).status ||
+    JSX_CLOSE_TAG_PARSER.parse(lineText.slice(1)).status
 
   let content
   let js
-
+  let cumulative = lineText
   let markdownContents = []
 
-  if (!isSelfClosing) {
+  if (!isSingleLine) {
     for (; nextLine < endLine; nextLine++) {
       if (state.sCount[nextLine] < state.blkIndent) { break; }
 
@@ -81,9 +82,11 @@ export default function jsx_block(state, startLine, endLine, silent) {
         }
       }
 
-      result = JSX_CLOSE_TAG_PARSER.parse(lineText)
-
-      if (result.value === type) {
+      cumulative += lineText
+      const closeResult = JSX_CLOSE_TAG_PARSER.parse(lineText)
+      const selfCloseResult = JSX_SELF_CLOSE_TAG_PARSER.parse(cumulative)
+      
+      if (selfCloseResult || closeResult.value === type) {
         let line = startLine;
         const codes = []
         for (let { key, contentStart, contentEnd, blkIndent } of markdownContents) {

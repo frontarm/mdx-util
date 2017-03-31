@@ -1,0 +1,13 @@
+.
+prop firstName
+.
+import React, { createElement, createFactory } from 'react'
+
+export default function({ factories={}, firstName }) {
+  const {
+    wrapper = createFactory('div'),
+  } = factories
+
+  return wrapper({})
+}
+.

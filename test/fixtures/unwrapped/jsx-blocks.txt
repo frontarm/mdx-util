@@ -1,32 +1,87 @@
 .
+test
+
 <SelfClosingBlock attrs={1} />
+
+test
 .
-createElement(SelfClosingBlock, { attrs: 1 })
+p({},
+  "test",
+),
+createElement(SelfClosingBlock, { attrs: 1 }),
+p({},
+  "test",
+)
 .
 
 
 .
+test
+
+<h1>Hello, {firstName}!</h1>
+
+test
+.
+p({},
+  "test",
+),
+createElement(
+  "h1",
+  null,
+  "Hello, ",
+  firstName,
+  "!"
+),
+p({},
+  "test",
+)
+.
+
+
+.
+test
+
 <SelfClosingBlock
   attrs={1}
+  other={2}
 />
+
+test
 .
+p({},
+  "test",
+),
 createElement(SelfClosingBlock, {
-  attrs: 1
-})
+  attrs: 1,
+  other: 2
+}),
+p({},
+  "test",
+)
 .
 
 
 .
+test
+
 <Block>
 tags **can** be closed in
 
 a subsequent
 </Block>
+
+test
 .
+p({},
+  "test",
+),
 createElement(
   Block,
   null,
   "tags **can** be closed in a subsequent"
+),
+p({},
+  "test",
 )
 .
 
@@ -47,25 +102,45 @@ createElement(
 
 
 .
+test
+
 <Block
   pass='something'
 >
 
 </Block>
+
+test
 .
+p({},
+  "test",
+),
 createElement(Block, {
   pass: 'something'
-})
+}),
+p({},
+  "test",
+)
 .
 
 
 .
+test
+
 <Block
 </Block>
+
+test
 .
+p({},
+  "test",
+),
 p({},
   "<Block",
   "</Block>",
+),
+p({},
+  "test",
 )
 .
 

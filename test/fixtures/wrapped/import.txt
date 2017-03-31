@@ -1,0 +1,81 @@
+.
+import Test from './test'
+.
+import React, { createElement, createFactory } from 'react'
+import Test from './test'
+
+export default function({ factories={} }) {
+  const {
+    wrapper = createFactory('div'),
+  } = factories
+
+  return wrapper({})
+}
+.
+
+
+.
+ import Test from './test'
+.
+import React, { createElement, createFactory } from 'react'
+
+export default function({ factories={} }) {
+  const {
+    wrapper = createFactory('div'),
+    p = createFactory('p'),
+  } = factories
+
+  return wrapper({},
+
+p({},
+  "import Test from ‘./test’",
+)
+
+  )
+}
+.
+
+
+.
+
+import Test from './test'
+.
+import React, { createElement, createFactory } from 'react'
+
+export default function({ factories={} }) {
+  const {
+    wrapper = createFactory('div'),
+    p = createFactory('p'),
+  } = factories
+
+  return wrapper({},
+
+p({},
+  "import Test from ‘./test’",
+)
+
+  )
+}
+.
+
+
+.
+import moose from tasmania
+.
+import React, { createElement, createFactory } from 'react'
+
+export default function({ factories={} }) {
+  const {
+    wrapper = createFactory('div'),
+    p = createFactory('p'),
+  } = factories
+
+  return wrapper({},
+
+p({},
+  "import moose from tasmania",
+)
+
+  )
+}
+.

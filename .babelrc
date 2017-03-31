@@ -1,9 +1,4 @@
 {
-  "presets": ["latest"],
-  "plugins": [
-    "syntax-jsx",
-    ["transform-react-jsx", { pragma: 'createElement' }],
-    "transform-class-properties",
-    "transform-object-rest-spread"
-  ]
+  "presets": ["latest", "react"],
+  "plugins": ["transform-class-properties", "transform-object-rest-spread"]
 }

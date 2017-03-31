@@ -1,0 +1,25 @@
+.
+<Example>{`
+import Example from './components/Example'
+`}</Example>
+.
+import React, { createElement, createFactory } from 'react'
+
+export default function({ factories={} }) {
+  const {
+    wrapper = createFactory('div'),
+  } = factories
+
+  return wrapper({},
+
+createElement(
+  Example,
+  null,
+  `
+import Example from './components/Example'
+`
+)
+
+  )
+}
+.

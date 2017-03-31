@@ -1,0 +1,18 @@
+factories
+=========
+
+Components created with MDX allow you to specify the functions used to
+render each HTML element by passing a `factories` prop.
+
+MDX provides sane defaults for your factories, so you can always use your
+components without passing *any* props.
+
+Common use cases of factories
+-----------------------------
+
+- replacing the default `<a>` element with a react-router or react-junctions
+  `<Link>` element to add support for push-state navigation within MDX
+  components
+- augmenting the default header elements (like `<h1>`, `<h2>`, etc.) with
+  links that let you navigate back to them in the future
+- replacing code blocks with an editable preview

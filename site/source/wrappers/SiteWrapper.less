@@ -1,0 +1,76 @@
+.RA-SiteWrapper {
+  &_HomeLinkTheme {
+    font-family: 'Share', sans-serif;
+    font-size: 26px;
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    &-react {
+      color: #61dafb;
+      margin-right: 4px;
+    }
+
+    &::before {
+      content: " ";
+      float: left;
+      width: 32px;
+      background-size: 32px 32px;
+      margin-right: 5px;
+    }
+  }
+
+  &_NavLinkTheme {
+    display: inline-block;
+    position: relative;
+    color: #dddddd;
+    font-size: 18px;
+    text-decoration: none;
+    margin-left: 30px;
+    transition: 150ms color ease-out;
+
+    &:hover,
+    &-active {
+      color: white;
+    }
+
+    &-active::before {
+      display: block;
+      position: absolute;
+      bottom: 3px;
+      left: 50%;
+      margin-left: -5px;
+      content: " ";
+      width: 0; 
+      height: 0; 
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+    }
+  }
+
+  &-is-react-armory-done-yet {
+    text-align: center;
+    font-size: 13px;
+    background-color: #9e2020;
+    color: white;
+
+    a {
+      color: white;
+    }
+  }
+
+  &-header {
+    &-nav {
+      &-home {
+        
+      }
+    }
+  }
+
+  &-footer {
+    text-align: center;
+    color: #666;
+    margin: 15px;
+    font-size: 13px;
+  }
+}

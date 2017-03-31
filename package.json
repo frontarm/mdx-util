@@ -1,44 +1,56 @@
 {
-  "name": "mdx-it",
-  "version": "0.2.0",
-  "description": "markdown-it based parser for MDX (i.e. JSX-infused markdown)",
-  "main": "lib/MDXIt.js",
+  "name": "mdxc",
+  "version": "1.0.0-beta.1",
+  "description": "A tool to convert Markdown into React components",
+  "author": "James K Nelson <james@jamesknelson.com>",
+  "license": "MIT",
+  "main": "lib/mdxc.js",
   "bin": {
-    "mdx": "./bin/mdx.js"
+    "mdx": "./bin/mdxc.js"
   },
   "scripts": {
     "clean": "rimraf lib",
     "build:watch": "cross-env BABEL_ENV=commonjs babel --watch --source-maps=inline -d lib/ source/",
     "build": "cross-env BABEL_ENV=commonjs babel source --out-dir lib",
     "prepublish": "npm run clean && npm run build",
-    "test": "npm run build && mocha test/*.test.js"
+    "test": "npm run build && mocha test/*.test.js",
+    "site:start": "sitepack start -c site/sitepack.config.js",
+    "site:clean": "rimraf site/build",
+    "site:build": "npm run site:clean && sitepack build -c site/sitepack.config.js -o site/build",
+    "site:publish": "npm run site:build && cp ./CNAME site/build && cd site/build && git init && git commit --allow-empty -m 'update site' && git checkout -b gh-pages && touch .nojekyll && git add . && git commit -am 'update site' && git push git@github.com:jamesknelson/mdxc gh-pages --force",
+    "site:view": "sitepack view -d site/build"
   },
   "keywords": [
     "markdown",
     "jsx",
     "mdx"
   ],
-  "author": "James K Nelson <james@jamesknelson.com>",
-  "license": "MIT",
   "devDependencies": {
     "babel-plugin-transform-class-properties": "^6.22.0",
     "babel-plugin-transform-object-rest-spread": "^6.22.0",
     "babel-preset-latest": "^6.22.0",
+    "babel-preset-react": "^6.23.0",
+    "classnames": "^2.2.5",
     "cross-env": "^3.1.4",
+    "less": "^2.7.2",
+    "less-loader": "^4.0.2",
+    "loader-utils": "^1.1.0",
     "markdown-it-testgen": "^0.1.4",
-    "mocha": "^3.2.0"
+    "mocha": "^3.2.0",
+    "prismjs": "^1.6.0",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "sitepack": "1.0.0-beta.2",
+    "sitepack-react": "1.0.0-beta.4"
   },
   "dependencies": {
     "babel-core": "^6.22.1",
     "babel-plugin-syntax-jsx": "^6.18.0",
-    "babel-plugin-syntax-trailing-function-commas": "^6.22.0",
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.22.0",
     "babel-plugin-transform-react-jsx": "^6.23.0",
     "commander": "^2.9.0",
     "front-matter": "^2.1.2",
     "markdown-it": "^8.2.2",
-    "markdown-it-anchor": "^2.6.0",
     "parsimmon": "^1.2.0",
-    "prismjs": "^1.6.0"
+    "slugify": "^1.1.0"
   }
 }
