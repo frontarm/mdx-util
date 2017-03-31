@@ -114,7 +114,7 @@ For tag "blocks" -- where a paragraph starts and ends with the same tag -- the c
   </markdown>
 </div>
 ```
-```
+```js
 // Output
 createElement(
   "div",
