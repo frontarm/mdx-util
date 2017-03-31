@@ -2,6 +2,8 @@
 
 *A tool to convert Markdown files into React components.*
 
+[![npm version](https://img.shields.io/npm/v/mdx-loader.svg)](https://www.npmjs.com/package/mdx-loader)
+
 MDX is a simpler way to write content for you React applications. While standard Markdown compiles to a string of HTML, MDX compiles directly to JavaScript. **If you're writing a React app, MDX is both easier to use *and* more flexible than standard Markdown.**
 
 Writing with MDX let's you use the full power of React, even when writing content.
@@ -12,7 +14,7 @@ Writing with MDX let's you use the full power of React, even when writing conten
 
 ## Try it yourself
 
-You can try your hand at MDX using the [online demo](), or the old fashioned way:
+You can try your hand at MDX using the [online demo](http://dump.jamesknelson.com/mdxc-playground.html), or the old fashioned way:
 
 ```bash
 # Install the `mdxc` command line tool using npm
