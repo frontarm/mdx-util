@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/jamesknelson/mdxc/master/media/logo.png" alt="MDXC" />
+<img src="https://raw.githubusercontent.com/jamesknelson/mdxc/master/media/logo.png" alt="MDXC" width="250" />
 
 *A tool to convert Markdown files into React components.*
 
