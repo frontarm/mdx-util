@@ -1,12 +1,12 @@
 {
   "name": "mdxc",
-  "version": "1.0.0-beta.2",
+  "version": "1.0.0-beta.3",
   "description": "A tool to convert Markdown into React components",
   "author": "James K Nelson <james@jamesknelson.com>",
   "license": "MIT",
   "main": "lib/mdxc.js",
   "bin": {
-    "mdx": "./bin/mdxc.js"
+    "mdxc": "./bin/mdxc.js"
   },
   "scripts": {
     "clean": "rimraf lib",
