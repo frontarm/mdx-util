@@ -1,0 +1,25 @@
+.
+import h from 'h'
+
+<Test test={1}>
+  <AnotherTest />
+</Test>
+.
+import h from 'h'
+
+export default function({ factories={} }) {
+  const {
+    wrapper = createFactory('div'),
+  } = factories
+
+  return wrapper({},
+
+h(
+  Test,
+  { test: 1 },
+  h(AnotherTest, null)
+)
+
+  )
+}
+.

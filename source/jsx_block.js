@@ -99,7 +99,7 @@ export default function jsx_block(state, startLine, endLine, silent) {
         codes.push(state.getLines(line, nextLine + 1, state.blkIndent, true).trim())
         const code = codes.join('\n')
 
-        js = transformJSX(code)
+        js = transformJSX(code, state.md.options.pragma)
 
         if (js) {
           nextLine++
@@ -112,7 +112,7 @@ export default function jsx_block(state, startLine, endLine, silent) {
   if (!js) {
     markdownContents = []
     content = state.getLines(startLine, nextLine, state.blkIndent, true)
-    js = transformJSX(content)
+    js = transformJSX(content, state.md.options.pragma)
   }
 
   if (!js) {

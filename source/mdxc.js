@@ -126,9 +126,14 @@ module.exports = class MDXC extends MarkdownIt {
   render(body, env) {
     env = env || {};
 
+    let importsSource = ''
+    if (!this.options.pragma) {
+      importsSource += `import React, { createElement, createFactory } from 'react'\n`
+    }
+
     const rendered = this.renderer.render(this.parse(body, env), this.options, env).trim();
     const result = rendered === '' ? 'wrapper({})' : `wrapper({},\n\n${rendered}\n\n  )`
-    const importsSource = `import React, { createElement, createFactory } from 'react'\n${this.imports}${this.imports ? '\n' : ''}`
+    importsSource += `${this.imports}${this.imports ? '\n' : ''}`
     const isCommonJS = !!this.options.commonJS
     const imports =
       !isCommonJS

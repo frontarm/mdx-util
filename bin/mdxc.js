@@ -13,6 +13,7 @@ program
   .description('Compile mdx to js')
   .usage('[options] <file>')
   .option('-c, --common', 'use commonJS modules (i.e. module.exports and require)')
+  .option('-p, --pragma', 'set the JSX pragma (defaults to React.createElement)')
   .option('-o, --output <file>', 'output to file instead of console')
   .option('-u, --unwrapped', "don't wrap the content in a React component")
 
@@ -30,6 +31,7 @@ var md = new MDXC({
   typographer: true,
   commonJS: program.common,
   unwrapped: program.unwrapped,
+  pragma: program.pragma,
 })
 
 var content = fs.readFileSync(program.args[0]).toString('utf8')

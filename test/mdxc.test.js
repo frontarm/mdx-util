@@ -18,4 +18,12 @@ describe('mdxc', function () {
   })
 
   generate(path.join(__dirname, 'fixtures/wrapped'), mdxWrapped);
+
+  var mdxPragma = new MDXC({
+    linkify: true,
+    typographer: true,
+    pragma: 'h',
+  })
+
+  generate(path.join(__dirname, 'fixtures/pragma'), mdxPragma);
 });

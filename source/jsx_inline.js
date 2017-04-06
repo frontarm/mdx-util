@@ -77,7 +77,7 @@ export default function jsx_inline(state, silent) {
 
   if (selfClosing.status) {
     const content = state.src.slice(pos, pos + selfClosing.value.end.offset);
-    const js = transformJSX(content)
+    const js = transformJSX(content, state.md.options.pragma)
 
     if (!js) {
       return false
@@ -98,7 +98,7 @@ export default function jsx_inline(state, silent) {
   const { contentEnd, closeEnd } = contentObj
 
   const tag = state.src.slice(pos, contentStart).replace(/>$/, '/>')
-  const js = transformJSX(tag)
+  const js = transformJSX(tag, state.md.options.pragma)
   if (!js) { return false }
 
   const content = state.src.slice(contentStart, contentEnd).trim()
