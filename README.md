@@ -301,6 +301,7 @@ Options:
   -h, --help           output usage information
   -V, --version        output the version number
   -c, --common         use commonJS modules (i.e. module.exports and require)
+  -p, --pragma         set the JSX pragma (defaults to React.createElement)
   -o, --output <file>  output to file instead of console
   -u, --unwrapped      don't wrap the content in a React component
 ```
@@ -379,7 +380,8 @@ The options to `mdxc` are mostly the same as the options for markdown-it. For de
 MDXC also provides a few extra options.
 
 - `commonJS` *bool* If true, your imports/exports will be transformed to use `require()` and `module.exports`
-- `unwrapped` *bool` If true, the component definition boilerplate will be omitted
+- `unwrapped` *bool* If true, the component definition boilerplate will be omitted
+- `pragma` *string* Allows you to set the JSX pragma to something other than the default of `React.createElement`. Setting the pragma will stop mdxc from importing `React` by default.
 
 To see this all in use, here is a slimmed-down version of the `mdx-loader` package:
 
