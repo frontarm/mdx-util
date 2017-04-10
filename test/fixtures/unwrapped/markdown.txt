@@ -140,4 +140,48 @@ p({},
 )
 .
 
+.
+<Hint>
+<markdown>
+Test
+</markdown>
+</Hint>
 
+Test
+.
+createElement(
+  Hint,
+  null,
+  wrapper({},
+    p({},
+      "Test",
+    ),
+  ),
+),
+p({},
+  "Test",
+)
+.
+
+.
+<Hint>
+<markdown>
+  Test
+</markdown>
+</Hint>
+
+Test
+.
+createElement(
+  Hint,
+  null,
+  wrapper({},
+    p({},
+      "Test",
+    ),
+  ),
+),
+p({},
+  "Test",
+)
+.
