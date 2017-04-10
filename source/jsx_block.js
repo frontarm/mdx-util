@@ -121,6 +121,9 @@ export default function jsx_block(state, startLine, endLine, silent) {
 
   state.line = nextLine;
 
+  var oldParentType = state.parentType;
+  state.parentType = 'jsx';
+
   if (!silent) {
     if (markdownContents.length === 0) {
       token         = state.push('jsx', '', 0);
@@ -128,7 +131,6 @@ export default function jsx_block(state, startLine, endLine, silent) {
       token.content = js;
     }
     else {
-      const originalBlkIndent = state.blkIndent
       let line = 0
       const jsLines = js.split('\n')
       let first = 1
@@ -149,23 +151,25 @@ export default function jsx_block(state, startLine, endLine, silent) {
         token         = state.push('jsx', '', 1);
         token.content = 'wrapper({}'
 
-        const oldLineMax = state.lineMax
-
+        const originalLineMax = state.lineMax
+        const originalBlkIndent = state.blkIndent
         state.blkIndent = blkIndent
         state.lineMax = contentEnd
         state.md.block.tokenize(state, contentStart, contentEnd);
-
-        state.lineMax = oldLineMax
+        state.blkIndent = originalBlkIndent
+        state.lineMax = originalLineMax
 
         token         = state.push('jsx', '', -1);
         token.content = ')'
       }
 
-      state.originalBlkIndent = originalBlkIndent
-
       token         = state.push('jsx', '', first - 1);
       token.content = jsLines.slice(line).join('\n')
     }
   }
+
+  state.line = nextLine
+  state.parentType = oldParentType
+
   return true;
 };

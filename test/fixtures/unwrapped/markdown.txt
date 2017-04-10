@@ -31,6 +31,8 @@ createElement(
     *But does work here*.
   </markdown>
 </div>
+
+test
 .
 createElement(
   "div",
@@ -46,6 +48,9 @@ createElement(
       ".",
     ),
   ),
+),
+p({},
+  "test",
 )
 .
 
