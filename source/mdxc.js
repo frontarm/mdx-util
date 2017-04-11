@@ -65,6 +65,9 @@ function mdAnchor(md) {
   })
 }
 
+function makeArray(stringOrArray) {
+  return Array.isArray(stringOrArray) ? stringOrArray : [stringOrArray]
+}
 
 module.exports = class MDXC extends MarkdownIt {
   constructor (options={}) {
@@ -126,10 +129,13 @@ module.exports = class MDXC extends MarkdownIt {
   render(body, env) {
     env = env || {};
 
-    let importsSource = [`import React, { createElement, createFactory } from 'react'`]
-    const optionImports = Array.isArray(this.options.imports) ? this.options.imports : [this.options.imports]
+    let importsSource = []
+    if (!this.options.pragma) {
+      importsSource.push(`import React, { createElement, createFactory } from 'react'`)
+    }
+
     if (this.options.imports) {
-      importsSource = importsSource.concat(this.options.imports)
+      importsSource = importsSource.concat(makeArray(this.options.imports))
     }
 
     const rendered = this.renderer.render(this.parse(body, env), this.options, env).trim();
