@@ -1,0 +1,52 @@
+.
+<Test test={1}>
+  <AnotherTest />
+</Test>
+.
+import h from 'h'
+import bar from 'bar'
+
+export default function({ factories={} }) {
+  const {
+    wrapper = createFactory('div'),
+  } = factories
+
+  return wrapper({},
+
+h(
+  Test,
+  { test: 1 },
+  h(AnotherTest, null)
+)
+
+  )
+}
+.
+
+
+.
+import foo from 'foo'
+
+<Test test={1}>
+  <AnotherTest />
+</Test>
+.
+import h from 'h'
+import bar from 'bar'
+import foo from 'foo'
+export default function({ factories={} }) {
+  const {
+    wrapper = createFactory('div'),
+  } = factories
+
+  return wrapper({},
+
+h(
+  Test,
+  { test: 1 },
+  h(AnotherTest, null)
+)
+
+  )
+}
+.

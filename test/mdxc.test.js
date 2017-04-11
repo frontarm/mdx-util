@@ -26,4 +26,25 @@ describe('mdxc', function () {
   })
 
   generate(path.join(__dirname, 'fixtures/pragma'), mdxPragma);
+
+  var mdxImports = new MDXC({
+    linkify: true,
+    typographer: true,
+    pragma: 'h',
+    imports: 'import h from \'h\''
+  })
+
+  generate(path.join(__dirname, 'fixtures/imports'), mdxImports);
+
+  var mdxImportsArray = new MDXC({
+    linkify: true,
+    typographer: true,
+    pragma: 'h',
+    imports: [
+      'import h from \'h\'',
+      'import bar from \'bar\''
+    ]
+  })
+
+  generate(path.join(__dirname, 'fixtures/importsArray'), mdxImportsArray);  
 });
