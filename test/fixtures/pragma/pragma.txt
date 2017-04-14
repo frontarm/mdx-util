@@ -6,7 +6,6 @@ import h from 'h'
 </Test>
 .
 import h from 'h'
-
 export default function({ factories={} }) {
   const {
     wrapper = createFactory('div'),

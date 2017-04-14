@@ -356,6 +356,28 @@ module: {
 
 Then import and use your components as you'd do with standard JavaScript!
 
+You may also specify options in Webpack config:
+
+```js
+module: {
+  rules: [
+    { test: /\.mdx?$/,
+      use: [
+        'babel-loader',
+        {
+          loader: 'mdx-loader',
+          options: {
+            pragma: 'h',
+            imports: [
+              'import h from \'h\''
+            ]
+          }
+      ]
+    }
+  ]
+}
+```
+
 ### API
 
 At its core, MDXC is just a wrapper around the excellent and highly configurable [markdown-it](https://github.com/markdown-it/markdown-it) project. This means that its API is mostly the same.
