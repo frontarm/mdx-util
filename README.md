@@ -4,7 +4,7 @@
 
 [![npm version](https://img.shields.io/npm/v/mdxc.svg)](https://www.npmjs.com/package/mdxc)
 
-MDX is a simpler way to write content for you React applications. While standard Markdown compiles to a string of HTML, MDX compiles directly to JavaScript. **If you're writing a React app, MDX is both easier to use *and* more flexible than standard Markdown.**
+MDX is a simpler way to write content for your React applications. While standard Markdown compiles to a string of HTML, MDX compiles directly to JavaScript. **If you're writing a React app, MDX is both easier to use *and* more flexible than standard Markdown.**
 
 Writing with MDX let's you use the full power of React, even when writing content.
 
@@ -325,7 +325,7 @@ Once you've cloned, installed and started sitepack, open your browser at <http:/
 
 ### Webpack with mdx-loader
 
-If you'd like to use MDX within an existing react app, chances are you'll want to use [mdx-loader](http://github.com/jamesknelson/mdx-loader). To do so, just add it to your project and then update the your `webpack.config.js`. Bear in mind that MDXC outputs ES2015, so you'll need to run the output through Babel if you want to support older browsers.
+If you'd like to use MDX within an existing react app, chances are you'll want to use [mdx-loader](http://github.com/jamesknelson/mdx-loader). To do so, just add it to your project and then update your `webpack.config.js`. Bear in mind that MDXC outputs ES2015, so you'll need to run the output through Babel if you want to support older browsers.
 
 ```bash
 # Add mdx-loader to your project
