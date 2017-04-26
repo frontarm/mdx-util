@@ -1,12 +1,8 @@
 export default {
-  wrapper: 'SiteWrapper',
-  title: "mdxc",
-  description: "mdxc - A tool to convert Markdown into React components",
-  content: require('./index.mdx'),
+  wrapper: 'MDXWrapper',
+  title: "MDXC",
+  content: require('!!raw!../docs/index.md'),
   children: [
-    require('../examples/factories.page.js'),
-    require('../examples/import.mdx'),
     require('../examples/props.mdx'),
-    require('../examples/tags.mdx'),
   ]
 }

@@ -13,7 +13,7 @@ export default ({ environment }) => ({
      * ES6 and JSX support. Babel can be configured using the `.babelrc` file
      * in the project's root directory.
      */
-    { test: /\.jsx?$/,
+    { test: /\.js$/,
       exclude: /node_modules|\.page\.js$/,
       loader: 'babel'
     },
@@ -39,7 +39,12 @@ export default ({ environment }) => ({
     { test: /\.mdx?$/,
       use: [
         'babel',
-        'sitepack-mdx-page',
+        {
+          loader: 'sitepack-mdx-page',
+          options: {
+            eager: true,
+          },
+        },
       ]
     },
 
@@ -82,17 +87,12 @@ export default ({ environment }) => ({
     /**
      * The file containing a template for your generated HTML files.
      */
-    html: './source/index.html.ejs',
-
-    /**
-     * A directory that can contain custom webpack loaders.
-     */
-    loaders: './loaders',
+    html: './index.html.ejs',
 
     /**
      * The file that exports the function to be called once your app has loaded.
      */
-    main: './source/main.js',
+    main: './main.js',
 
     /**
      * The directory whose contents will be copied into your build directory.
@@ -100,16 +100,21 @@ export default ({ environment }) => ({
     public: './public',
 
     /**
+     * The directory where any custom loaders for this website are stored.
+     */
+    loaders: './loaders',
+
+    /**
      * The file that exports the function that will be used to render a string
      * with the HTML content for each page.
      */
-    renderToString: './source/renderToString.js',
+    renderToString: './renderToString.js',
 
     /**
      * The file that exports the function responsible for creating your Site
      * object, and loading the root Page.
      */
-    site: './source/createSite.js',
+    site: './createSite.js',
   },
 
   /**

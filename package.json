@@ -26,6 +26,7 @@
     "mdx"
   ],
   "devDependencies": {
+    "armo-breadboard": "^0.2.1",
     "babel-cli": "^6.24.1",
     "babel-plugin-transform-class-properties": "^6.22.0",
     "babel-plugin-transform-object-rest-spread": "^6.22.0",
@@ -39,11 +40,13 @@
     "markdown-it-testgen": "^0.1.4",
     "mocha": "^3.2.0",
     "prismjs": "^1.6.0",
+    "raw-loader": "^0.5.1",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
+    "react-textarea-autosize": "^4.1.0",
     "rimraf": "^2.6.1",
-    "sitepack": "^1.0.0-beta.4",
-    "sitepack-react": "^1.0.0-beta.7"
+    "sitepack": "1.0.0-beta.11",
+    "sitepack-react": "^1.0.0-beta.10"
   },
   "dependencies": {
     "babel-core": "^6.24.0",

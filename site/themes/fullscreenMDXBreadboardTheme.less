@@ -1,0 +1,89 @@
+.fullscreenMDXBreadboardTheme {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  height: 100%;
+
+  &-editor {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    overflow: auto;
+
+    resize: none;
+    border: none;
+
+    padding: 15px;
+    color: rgb(44, 44, 44);
+    background-color: lighten(#C4F1FE, 9%);
+    border-right: 1px solid desaturate(#C4F1FE, 50%);
+  }
+
+  &-transformed {
+    margin: 0 !important;
+    border-radius: 0;
+  }
+
+  &-editor,
+  &-output {
+    font-family: Monaco, monospace;
+    line-height: 18px;
+    font-size: 13px;
+  }
+
+  &-preview {
+    padding: 15px;
+    background-color: white;
+
+    font-family: 'PT Sans', Helvetica, Tahoma, sans-serif;
+    line-height: 24px;
+    font-size: 16px;
+
+    // First div is the mount element, second is the wrapper
+    > div > div > * {
+      max-width: 500px;
+    }
+  }
+
+  &-mode {
+    &:not(:last-child) {
+      border-right: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    display: inline-block;
+    height: 24px;
+    padding: 0 7px;
+  }
+
+  &-modes, &-wrapper {
+    display: inline-block;
+    background: rgba(96, 96, 96, 0.7);
+    border-radius: 20px;
+    padding: 0 7px;
+    margin-left: 10px;
+  }
+
+  > nav {
+    position: fixed;
+    top: 15px;
+    height: 24px;
+    right: 15px;
+    font-size: 12px;
+    line-height: 24px;
+    font-family: 'PT Sans', Helvetica, Tahoma, sans-serif;
+    color: #bbb;
+    z-index: 2;
+
+    > span {
+      cursor: pointer;
+
+      &.active {
+        color: #eee;
+      }
+    }
+  }
+  &-active {
+    color: #fff !important;
+  }
+}

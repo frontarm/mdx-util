@@ -10,23 +10,27 @@ const { loadPageWithContent } = require('sitepack/lib/loaderUtils')
 const env = {};
 
 
-const aliases = {
+const codeBlockAliases = {
   'js': 'jsx',
-  'html': 'markup'
+  'html': 'markup',
+  'mdx': 'markdown',
+  'md': 'markdown',
 }
 function highlight(str, lang) {
-  if (!lang) {
+  if (!lang || lang == 'mdx') {
     return str
-  } else {
-    lang = aliases[lang] || lang
-    require(`prismjs/components/prism-${lang}.js`)
-    if (Prism.languages[lang]) {
-      return Prism.highlight(str, Prism.languages[lang])
+  }
+  else {
+    const language = codeBlockAliases[lang] || lang
+    require(`prismjs/components/prism-${language}.js`)
+    if (Prism.languages[language]) {
+      return Prism.highlight(str, Prism.languages[language])
     } else {
       return str
     }
   }
 }
+
 
 
 function mdImageReplacer(md) {
@@ -51,33 +55,6 @@ function mdImageReplacer(md) {
   })
 }
 
-function mdLinkReplacer(sitepackRoot, resourcePath) {
-  return (md) => {
-    md.core.ruler.push('linkReplacer', function(state) {
-      function applyFilterToTokenHierarchy(token) {
-        if (token.children) {
-          token.children.map(applyFilterToTokenHierarchy);
-        }
-
-        if (token.type === 'link_open') {
-          const href = token.attrGet('href');
-
-          if (href.indexOf('://') !== -1 || href[0] == '#') return;
-
-          const absoluteHref =
-            href[0] === '/'
-              ? href
-              : '/' + path.relative(sitepackRoot, path.join(resourcePath, '..', href))
-
-          token.attrSet('href', absoluteHref);
-        }
-      }
-
-      state.tokens.map(applyFilterToTokenHierarchy);
-    })
-  }
-}
-
 
 module.exports = function markdownLoader(content) {
   const loaderOptions = loaderUtils.getOptions(this) || {};
@@ -88,20 +65,10 @@ module.exports = function markdownLoader(content) {
   if (loaderOptions.typographer === undefined) loaderOptions.typographer = true;
   if (loaderOptions.highlight === undefined) loaderOptions.highlight = highlight;
 
-  let md =
-    new MDXC(loaderOptions)
-      .enable(['link'])
-      .use(mdImageReplacer)
-      .use(mdLinkReplacer(loaderOptions.sitepack.packageRoot, this.resourcePath))
+  let mdxc = new MDXC(loaderOptions) .use(mdImageReplacer)
 
   const data = frontMatter(content);
-  const body = md.render(data.body, env);
+  const body = mdxc.render(data.body, env);
 
-  // Pass metadata to Sitepack by setting it on the loader's `value`
-  const options = data.attributes
-  if (!options.title) {
-    options.title = env.title 
-  }
-
-  return loadPageWithContent(this, options, body)
+  return loadPageWithContent(this, loaderOptions, data.attributes, body)
 }

@@ -33,7 +33,6 @@ import './global.less'
 import React from 'react'
 import { createSite, createSiteTransformer, Transforms } from 'sitepack'
 import { sitepackReactTransform } from 'sitepack-react'
-//import convertMDXLinkPaths from 'sitepack-mdx-page-loader/transform'
 
 export default ({ environment }) => {
   const siteTransformer = createSiteTransformer(
@@ -52,6 +51,7 @@ export default ({ environment }) => {
     Transforms.consume([
       'description',
       'author',
+      'banner',
     ]),
 
     // Convert `wrapper` strings into React components by requiring a
@@ -67,7 +67,7 @@ export default ({ environment }) => {
   // 
   // This Site object will be passed through each of the transforms
   // defined above, from top to bottom.
-  const site = createSite(require('../index.page.js'), siteTransformer)
+  const site = createSite(require('./index.page.js'), siteTransformer)
 
   return site
 }

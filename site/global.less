@@ -1,7 +1,29 @@
+/**
+ * You can add any global CSS to this file, but prefer component-specific CSS
+ * files where possible.
+ */
+
 @import '~prismjs/themes/prism-tomorrow.css';
 
-.MDXWrapper-content {
-  max-width: 700px;
+@import url('https://fonts.googleapis.com/css?family=PT+Sans');
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+#app, #app > div {
+  height: 100%;
+}
+
 
   pre, code { font-family: Monaco, monospace; line-height: 1.5 }
   pre { background: rgb(45, 45, 45); padding: 10px; border-radius: 3px; color: rgb(205, 205, 205); }
@@ -26,7 +48,7 @@
   li { margin: 4px 0; }
 
   h1, h2, h3 { position: relative; }
-  
+
   p { margin: 1em 0; }
 
   th {
@@ -47,4 +69,3 @@
   }
 
   a { color: red; text-decoration: none }
-}

@@ -1,0 +1,94 @@
+.defaultMDXBreadboardTheme {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+
+  &-single {
+    max-width: 530px;
+  }
+
+  &-editor {
+    width: 100%;
+    overflow: hidden;
+
+    resize: none;
+    border: none;
+
+    margin-right: 15px;
+
+    padding: 15px;
+    color: rgb(40, 40, 40);
+    background-color: lighten(#C4F1FE, 9%);
+    box-shadow: 0 0 10px desaturate(#C4F1FE, 50%) inset;
+    border-radius: 3px;
+  }
+
+  &-transformed {
+    margin: 0 !important;
+    border-radius: 0;
+  }
+
+  &-editor,
+  &-output {
+    font-family: Monaco, monospace;
+    line-height: 18px;
+    font-size: 13px;
+  }
+
+  &-preview {
+    padding: 0 15px;
+    box-shadow: 0 0 10px #e0e0e0 inset;
+    border-radius: 3px;
+
+    font-family: 'PT Sans', Helvetica, Tahoma, sans-serif;
+    line-height: 24px;
+    font-size: 16px;
+
+    // First div is the mount element, second is the wrapper
+    > div > div > * {
+      max-width: 500px;
+    }
+  }
+
+  &-mode {
+    &:not(:last-child) {
+      border-right: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    display: inline-block;
+    height: 24px;
+    padding: 0 7px;
+  }
+
+  &-modes, &-wrapper {
+    display: inline-block;
+    background: rgba(96, 96, 96, 0.9);
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    padding: 0 7px;
+    margin-right: 10px;
+  }
+
+  > nav {
+    position: absolute;
+    top: 0;
+    height: 24px;
+    right: 30px;
+    font-size: 12px;
+    line-height: 24px;
+    font-family: 'PT Sans', Helvetica, Tahoma, sans-serif;
+    color: #bbb;
+    z-index: 2;
+
+    > span {
+      cursor: pointer;
+
+      &.active {
+        color: #eee;
+      }
+    }
+  }
+  &-active {
+    color: #fff !important;
+  }
+}
