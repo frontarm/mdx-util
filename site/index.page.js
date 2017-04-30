@@ -1,8 +1,9 @@
 export default {
-  wrapper: 'MDXWrapper',
+  wrapper: 'SiteWrapper',
   title: "MDXC",
-  content: require('!!raw!../docs/index.md'),
+  content: require('../docs/README.md'),
   children: [
     require('../examples/props.mdx'),
+    require('../examples/tags.mdx'),
   ]
 }

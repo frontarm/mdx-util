@@ -48,7 +48,7 @@ export default {
       flexShrink: 1,
       overflow: 'auto',
     }
-      
+
     return (
       <div className={cx.root(null, activeModeCount == 1 ? 'single' : null)}>
         <nav>
@@ -56,11 +56,11 @@ export default {
             <span className={cx('wrapper', { active: !unwrapped })} onClick={onToggleWrapped}>Wrap</span>
           }
           <span className={cx('modes')}>
-            <span className={cx('mode', { active: modes.transformed })} onClick={modeActions.selectTransformed}>Output</span>
-            <span className={cx('mode', { active: modes.view })} onClick={modeActions.selectComponent}>Preview</span>
             { activeModeCount === 1 &&
               <span className={cx('mode', { active: modes.source })} onClick={modeActions.selectSource}>Source</span>
             }
+            <span className={cx('mode', { active: modes.transformed })} onClick={modeActions.selectTransformed}>Output</span>
+            <span className={cx('mode', { active: modes.view })} onClick={modeActions.selectView}>Preview</span>
           </span>
         </nav>
         { modes.source &&
@@ -78,6 +78,14 @@ export default {
             source={transformedSource}
             style={secondaryLayout}
           />
+        }
+        { (transformError || executionError) &&
+          <div className={cx('error')} style={secondaryLayout}>
+            <pre>
+              <span className={cx('error-title')}>Failed to Compile</span>
+              {(transformError || executionError).toString()}
+            </pre>
+          </div>
         }
       </div>
     )

@@ -1,0 +1,149 @@
+.SiteWrapper {
+  height: 100%;
+
+  > nav {
+    position: fixed;
+    top: 0;
+    bottom: 25px;
+    left: 0;
+    width: 150px;
+    overflow: auto;
+  }
+
+  > main {
+    position: absolute;
+    top: 0;
+    left: 150px;
+    right: 0;
+    min-height: 100%;
+  }
+
+  &-link {
+    display: block;
+    margin: 5px 0 5px 12px;
+  }
+
+  > footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 150px;
+    height: 25px;
+  }
+
+  @media only screen and (max-device-width : 639px) {
+    h1 {
+      margin-top: 15px
+    }
+
+    > nav {
+      position: relative;
+      width: 100%;
+      bottom: auto;
+      height: auto;
+      padding-bottom: 15px;
+    }
+
+    > main {
+      position: relative;
+      top: 0;
+      left: 0;
+      right: 0;
+      min-height: 100%;
+    }
+
+    &-link {
+      display: inline-block;
+      margin: 0 0 5px 10px;
+    }
+
+    &-heading-github {
+      position: absolute;
+      right: 15px;
+      top: 110px;
+    }
+
+    > footer {
+      position: relative;
+      bottom: auto;
+      left: 0;
+      width: 100%;
+      height: auto;
+      padding: 15px 0 5px;
+    }
+  }
+
+
+
+
+  > nav {
+    background-color: #181818;
+
+    a {
+      text-decoration: underline;
+    }
+  }
+
+  &-logo {
+    display: block;
+    width: 125px;
+    margin: 25px auto 0;
+
+    > img {
+      position: relative;
+      max-width: 100%;
+      opacity: 0.5;
+    }
+
+    &-active > img {
+      opacity: 0.7;
+    }
+  }
+
+  &-description {
+    font-size: 13px;
+    font-family: Inconsolata, sans-serif;
+    text-align: center;
+    margin: 0 12px 25px;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  &-heading {
+    display: block;
+    margin: 15px 12px 5px;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-family: Roboto, sans-serif;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.3);
+
+    &-github {
+      margin-top: 20px;
+    }
+  }
+
+  &-link {
+    font-size: 14px;
+    font-family: Roboto, sans-serif;
+    color: rgba(255, 255, 255, 0.5);
+
+    &-active {
+      color: rgba(255, 255, 255, 0.7);
+      text-shadow: 0 0 2px rgba(255, 255, 255, 0.2);
+    }
+  }
+
+  > footer {
+    background-color: #181818;
+
+    a {
+      display: block;
+      font-size: 13px;
+      font-family: Inconsolata, sans-serif;
+      text-decoration: underline;
+      text-align: center;
+      margin-bottom: 15px;
+      color: rgba(255, 255, 255, 0.3);
+    }
+  }
+}

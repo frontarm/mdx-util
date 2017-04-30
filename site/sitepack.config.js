@@ -38,9 +38,8 @@ export default ({ environment }) => ({
      */
     { test: /\.mdx?$/,
       use: [
-        'babel',
         {
-          loader: 'sitepack-mdx-page',
+          loader: 'sitepack-raw-page',
           options: {
             eager: true,
           },

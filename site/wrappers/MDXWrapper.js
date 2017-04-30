@@ -10,9 +10,10 @@ import createClassNamePrefixer from '../utils/createClassNamePrefixer'
 const cx = createClassNamePrefixer('MDXWrapper')
 
 
-function ThemedMDXBreadboard({ defaultSource }) {
+function ThemedMDXBreadboard({ defaultSource, ...other }) {
   return (
     <MDXBreadboard
+      {...other}
       defaultSource={defaultSource}
       theme={defaultMDXBreadboardTheme}
       require={breadboardRequire}
@@ -26,7 +27,7 @@ function breadboardRequire(name) {
     return require('react')
   }
   else if (name === 'armo-breadboard') {
-    return { MDXBreadboard: ThemedMDXBreadboard }
+    return { a: 1, MDXBreadboard: ThemedMDXBreadboard }
   }
 }
 
@@ -40,27 +41,17 @@ export default class MDXWrapper extends Component {
     const { page, hash } = this.props
 
     // TODO:
-    // - handle 404
-    // - "preview" link does not load
     // - scroll to hash on load
 
     return (
       <div className={cx.root()}>
-        <nav>
-          <Link page='/site/index.page.js'>MDXC</Link>
-          <span className={cx('heading')}>Examples</span>
-          <Link page='/examples/props.mdx'>Props</Link>
-        </nav>
-        <main className={cx('main')}>
-          <MDXBreadboard
-            defaultSource={page.content}
-            theme={fullscreenMDXBreadboardTheme}
-            require={breadboardRequire}
-          />
-        </main>
-        <footer className={cx('footer')}>
-          Copyright &copy; 2017 James K Nelson. Documentation powered by <a href="https://github.com/jamesknelson/sitepack">Sitepack</a>.
-        </footer>
+        <MDXBreadboard
+          key={page.id}
+          defaultMode='view'
+          defaultSource={page.content}
+          theme={fullscreenMDXBreadboardTheme}
+          require={breadboardRequire}
+        />
       </div>
     )
   }

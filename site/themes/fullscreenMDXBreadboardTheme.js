@@ -1,12 +1,38 @@
 import './fullscreenMDXBreadboardTheme.less'
+import ExecutionEnvironment from 'exenv'
 import React, { Component, PropTypes } from 'react'
 import { MDXBreadboard } from 'armo-breadboard'
+import Textarea from 'react-textarea-autosize'
 import defaultMDXBreadboardTheme from './defaultMDXBreadboardTheme'
 import createClassNamePrefixer from '../utils/createClassNamePrefixer'
 import HighlightedCodeBlock from '../controls/HighlightedCodeBlock'
 
 
 const cx = createClassNamePrefixer('fullscreenMDXBreadboardTheme')
+
+
+class Editor extends Component {
+  handleClick = () => {
+    this.refs.textarea.focus()
+  }
+
+  render() {
+    const props = this.props
+    const isServer = !ExecutionEnvironment.canUseDOM
+
+    return (
+      <div className={cx('editor')} onClick={this.handleClick} style={props.layout}>
+        <Textarea
+          ref='textarea'
+          className={cx('editor-textarea', { 'editor-server': isServer })}
+          value={props.value}
+          onChange={props.onChange}
+          disabled={isServer}
+        />
+      </div>
+    )
+  }
+}
 
 
 export default {
@@ -39,11 +65,11 @@ export default {
     }
     if (activeModeCount === 1) {
       sourceLayout = {
-        position: 'fixed',
-        left: 0,
-        top: 0,
-        bottom: 0,
-        right: 0,
+        position: 'relative',
+        flexBasis: 600,
+        flexGrow: 1,
+        flexShrink: 1,
+        overflow: 'auto',
       }
     }
 
@@ -54,30 +80,39 @@ export default {
       flexShrink: 1,
       overflow: 'auto',
     }
-      
+
     return (
       <div className={cx.root()}>
+        <div className={cx(!ExecutionEnvironment.canUseDOM ? 'loading' : 'loaded')} />
         <nav>
           { modes.transformed &&
             <span className={cx('wrapper', { active: !unwrapped })} onClick={onToggleWrapped}>Wrap</span>
           }
           <span className={cx('modes')}>
-            <span className={cx('mode', { active: modes.transformed })} onClick={modeActions.selectTransformed}>Output</span>
-            <span className={cx('mode', { active: modes.view })} onClick={modeActions.selectComponent}>Preview</span>
             { activeModeCount === 1 &&
               <span className={cx('mode', { active: modes.source })} onClick={modeActions.selectSource}>Source</span>
             }
+            <span className={cx('mode', { active: modes.transformed })} onClick={modeActions.selectTransformed}>Output</span>
+            <span className={cx('mode', { active: modes.view })} onClick={modeActions.selectView}>Preview</span>
           </span>
         </nav>
         { modes.source &&
           renderEditorElement({ layout: sourceLayout })
         }
-        { modes.view &&
+        { (activeModeCount > 1 || !modes.source) && (transformError || (modes.view && executionError)) &&
+          <div className={cx('error')} style={secondaryLayout}>
+            <pre>
+              <span className={cx('error-title')}>Failed to Compile</span>
+              {(transformError || executionError).toString()}
+            </pre>
+          </div>
+        }
+        { modes.view && !transformError && !executionError &&
           <div className={cx('preview')} style={secondaryLayout}>
             {renderMountElement()}
           </div>
         }
-        { modes.transformed &&
+        { modes.transformed && !transformError &&
           <HighlightedCodeBlock
             className={cx('transformed')}
             language="javascript"
@@ -102,14 +137,7 @@ export default {
     }
   },
 
-  renderEditor: function({ layout, value, onChange }) {
-    return (
-      <textarea
-        className={cx('editor')}
-        value={value}
-        onChange={onChange}
-        style={layout}
-      />
-    )
+  renderEditor: function(props) {
+    return <Editor {...props} />
   },
 }

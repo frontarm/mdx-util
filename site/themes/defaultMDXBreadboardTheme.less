@@ -18,9 +18,8 @@
     margin-right: 15px;
 
     padding: 15px;
-    color: rgb(40, 40, 40);
-    background-color: lighten(#C4F1FE, 9%);
-    box-shadow: 0 0 10px desaturate(#C4F1FE, 50%) inset;
+    color: rgb(210, 210, 210);
+    background-color: #2d2d2d;
     border-radius: 3px;
   }
 
@@ -31,7 +30,7 @@
 
   &-editor,
   &-output {
-    font-family: Monaco, monospace;
+    font-family: Inconsolata, monospace;
     line-height: 18px;
     font-size: 13px;
   }
@@ -41,7 +40,7 @@
     box-shadow: 0 0 10px #e0e0e0 inset;
     border-radius: 3px;
 
-    font-family: 'PT Sans', Helvetica, Tahoma, sans-serif;
+    font-family: 'Roboto', Helvetica, Tahoma, sans-serif;
     line-height: 24px;
     font-size: 16px;
 
@@ -74,11 +73,13 @@
     top: 0;
     height: 24px;
     right: 30px;
+    left: 0;
     font-size: 12px;
     line-height: 24px;
-    font-family: 'PT Sans', Helvetica, Tahoma, sans-serif;
+    font-family: 'Roboto', Helvetica, Tahoma, sans-serif;
     color: #bbb;
     z-index: 2;
+    text-align: right;
 
     > span {
       cursor: pointer;
@@ -87,6 +88,9 @@
         color: #eee;
       }
     }
+  }
+  &-single > nav {
+    max-width: 500px;
   }
   &-active {
     color: #fff !important;
