@@ -5,6 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title><%= page.title %></title>
 
+  <meta property="og:site_name" content="MDXC" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary" />
+
+  <% if (page.metaDescription) { %>
+    <meta name="description" content="<%- page.metaDescription %>" />
+    <meta property="og:description" content="<%- page.metaDescription %>" />
+    <meta name="twitter:description" content="<%- page.metaDescription %>" />
+  <% } %>
+  <% if (page.metaTitle) { %>
+    <meta property="og:title" content="<%- page.metaTitle %>" />
+    <meta name="twitter:title" content="<%- page.metaTitle %>" />
+  <% } %>
+  <% if (page.metaImage) { %>
+    <meta property="og:image" content="<%- page.metaImage %>" />
+    <meta name="twitter:image" content="<%- page.metaImage %>" />
+  <% } %>
+
   <% files.css.forEach(function(file) { %>
     <link rel="stylesheet" type="text/css" href="<%- file %>">
   <% }); %>
