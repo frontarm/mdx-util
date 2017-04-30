@@ -82,7 +82,6 @@ export default ({ environment }) => ({
    * directories that Sitepack requires.
    */
   paths: {
-
     /**
      * The file containing a template for your generated HTML files.
      */

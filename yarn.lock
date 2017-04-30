@@ -90,9 +90,9 @@ argparse@^1.0.7, "argparse@~ 1.0.0":
   dependencies:
     sprintf-js "~1.0.2"
 
-armo-breadboard@^0.2.1:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/armo-breadboard/-/armo-breadboard-0.2.1.tgz#d304140417b407b441ed2b0abfc0b801f657de5b"
+armo-breadboard@0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/armo-breadboard/-/armo-breadboard-0.2.2.tgz#38039e1224b87e903fcc0d3f1a89d1c7831e259d"
   dependencies:
     babel-core "^6.24.0"
     babel-preset-latest "^6.24.0"
@@ -3805,16 +3805,16 @@ signal-exit@^3.0.0:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
 
-sitepack-react@^1.0.0-beta.10:
-  version "1.0.0-beta.10"
-  resolved "https://registry.yarnpkg.com/sitepack-react/-/sitepack-react-1.0.0-beta.10.tgz#2fbe6240e4bb0cc30282cb2c35c06678457f34bf"
+sitepack-react@1.0.0-beta.12:
+  version "1.0.0-beta.12"
+  resolved "https://registry.yarnpkg.com/sitepack-react/-/sitepack-react-1.0.0-beta.12.tgz#d34607e0efcc94f48ed4cfe5cc79892a8d639a33"
   dependencies:
     exenv "^1.2.1"
     junctions "^0.3.3"
 
-sitepack@1.0.0-beta.11:
-  version "1.0.0-beta.11"
-  resolved "https://registry.yarnpkg.com/sitepack/-/sitepack-1.0.0-beta.11.tgz#9912cea651cc998543d4fe79bb71f9a7ed6000cc"
+sitepack@^1.0.0-beta.12:
+  version "1.0.0-beta.12"
+  resolved "https://registry.yarnpkg.com/sitepack/-/sitepack-1.0.0-beta.12.tgz#8791c32b1c81c829c0a781d064c860736700090b"
   dependencies:
     babel-core "^6.24.0"
     babel-loader "^6.2.10"

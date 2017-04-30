@@ -64,9 +64,6 @@ export default {
       <div className={cx.root(null, ExecutionEnvironment.canUseDOM ? 'loaded' : 'static')}>
         <div className={cx('loading-bar')} />
         <nav>
-          { modes.transformed &&
-            <span className={cx('wrapper', { active: !unwrapped })} onClick={onToggleWrapped}>Wrap</span>
-          }
           <span className={cx('modes')}>
             { singleMode &&
               <span className={cx('mode', { active: modes.source })} onClick={modeActions.selectSource}>Source</span>
@@ -74,6 +71,9 @@ export default {
             <span className={cx('mode', { active: modes.transformed })} onClick={modeActions.selectTransformed}>Output</span>
             <span className={cx('mode', { active: modes.view })} onClick={modeActions.selectView}>Preview</span>
           </span>
+          { modes.transformed &&
+            <span className={cx('wrapper', { active: !unwrapped })} onClick={onToggleWrapped}>Wrap</span>
+          }
         </nav>
 
         { modes.source &&
@@ -116,7 +116,12 @@ export default {
       )
     }
     else {
-      return <pre className={'language-'+language}><code dangerouslySetInnerHTML={{ __html: source }} /></pre>
+      return (
+        <HighlightedCodeBlock
+          language={language}
+          source={source}
+        />
+      )
     }
   },
 

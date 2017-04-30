@@ -8,6 +8,7 @@
 }
 
 .fullscreenMDXBreadboardTheme {
+  position: relative;
   display: flex;
   align-items: stretch;
   width: 100%;
@@ -23,11 +24,14 @@
   }
 
   &-editor-wrapper {
+    background-color: #2d2d2d;
+    padding-top: 12px;
     display: none;
     position: relative;
     flex-basis: 600px;
     flex-grow: 0;
     flex-shrink: 1;
+    min-height: 100%;
   }
   &-expand {
     flex-grow: 1;
@@ -38,7 +42,18 @@
     display: block;
   }
 
+  > nav {
+    position: fixed;
+    left: 155px;
+  }
+
   @media only screen and (min-width: 1061px) {
+    > nav {
+      position: fixed;
+      left: 50%;
+      padding-left: 78px;
+    }
+
     &-default-secondary {
       display: block;
     }
@@ -104,6 +119,9 @@
     line-height: 18px;
     font-size: 15px;
   }
+  &-transformed {
+    padding-top: 22px !important;
+  }
 
   &-preview {
     padding: 15px;
@@ -151,16 +169,15 @@
   &-modes, &-wrapper {
     display: inline-block;
     background: rgba(96, 96, 96, 0.7);
-    border-radius: 20px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
     padding: 0 7px;
     margin-left: 10px;
   }
 
   > nav {
-    position: fixed;
-    top: 15px;
+    top: 0;
     height: 24px;
-    right: 15px;
     font-size: 12px;
     line-height: 24px;
     font-family: 'Roboto', Helvetica, Tahoma, sans-serif;
