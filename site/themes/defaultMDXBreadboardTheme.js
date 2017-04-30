@@ -1,4 +1,5 @@
 import './defaultMDXBreadboardTheme.less'
+import ExecutionEnvironment from 'exenv'
 import React, { Component, PropTypes } from 'react'
 import Textarea from 'react-textarea-autosize'
 import { MDXBreadboard } from 'armo-breadboard'
@@ -19,6 +20,8 @@ export default {
       transformError,
       executionError,
 
+      defaultMode,
+
       renderEditorElement,
       renderMountElement,
 
@@ -29,7 +32,8 @@ export default {
       onToggleWrapped,
     } = props
 
-    const activeModeCount = Object.values(modes).reduce((acc, x) => acc + x || 0, 0)
+    const isStatic = !ExecutionEnvironment.canUseDOM
+    const singleMode = Object.values(modes).reduce((acc, x) => acc + x || 0, 0) === 1 || isStatic
 
     const sourceLayout = {
       position: 'relative',
@@ -37,7 +41,7 @@ export default {
       flexGrow: 0,
       flexShrink: 0,
     }
-    if (activeModeCount === 1) {
+    if (singleMode) {
       sourceLayout.flexShrink = 1
     }
 
@@ -50,13 +54,13 @@ export default {
     }
 
     return (
-      <div className={cx.root(null, activeModeCount == 1 ? 'single' : null)}>
+      <div className={cx.root(null, singleMode ? 'single' : null, isStatic ? 'static' : 'loaded')}>
         <nav>
           { modes.transformed &&
             <span className={cx('wrapper', { active: !unwrapped })} onClick={onToggleWrapped}>Wrap</span>
           }
           <span className={cx('modes')}>
-            { activeModeCount === 1 &&
+            { singleMode &&
               <span className={cx('mode', { active: modes.source })} onClick={modeActions.selectSource}>Source</span>
             }
             <span className={cx('mode', { active: modes.transformed })} onClick={modeActions.selectTransformed}>Output</span>
@@ -64,28 +68,33 @@ export default {
           </span>
         </nav>
         { modes.source &&
+          (!isStatic || defaultMode === 'source') &&
           renderEditorElement({ layout: sourceLayout })
         }
-        { modes.view &&
-          <div className={cx('preview')} style={secondaryLayout}>
-            {renderMountElement()}
-          </div>
-        }
-        { modes.transformed &&
-          <HighlightedCodeBlock
-            className={cx('transformed')}
-            language="javascript"
-            source={transformedSource}
-            style={secondaryLayout}
-          />
-        }
-        { (transformError || executionError) &&
+        { (!singleMode || !modes.source) &&
+          (transformError || (modes.view && executionError)) &&
+          (!isStatic || defaultMode === 'view' || defaultMode === 'transformed') &&
           <div className={cx('error')} style={secondaryLayout}>
             <pre>
               <span className={cx('error-title')}>Failed to Compile</span>
               {(transformError || executionError).toString()}
             </pre>
           </div>
+        }
+        { modes.view && !transformError && !executionError &&
+          (!isStatic || defaultMode === 'view') &&
+          <div className={cx('preview')} style={secondaryLayout}>
+            {renderMountElement()}
+          </div>
+        }
+        { modes.transformed && !transformError &&
+          (!isStatic || defaultMode === 'transformed') &&
+          <HighlightedCodeBlock
+            className={cx('transformed')}
+            language="javascript"
+            source={transformedSource}
+            style={secondaryLayout}
+          />
         }
       </div>
     )
@@ -107,7 +116,7 @@ export default {
   renderEditor: function({ layout, value, onChange }) {
     return (
       <Textarea
-        className={cx('editor')}
+        className={cx('editor', { 'editor-static': !ExecutionEnvironment.canUseDOM })}
         value={value}
         onChange={onChange}
         style={layout}

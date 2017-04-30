@@ -13,8 +13,38 @@
   width: 100%;
   min-height: 100%;
 
-  &-loading,
-  &-loaded, {
+  &-secondary {
+    display: none;
+    position: relative;
+    flex-basis: 600px;
+    flex-grow: 1;
+    flex-shrink: 1;
+    overflow: auto;
+  }
+
+  &-editor-wrapper {
+    display: none;
+    position: relative;
+    flex-basis: 600px;
+    flex-grow: 0;
+    flex-shrink: 1;
+  }
+  &-expand {
+    flex-grow: 1;
+  }
+  &-default-primary,
+  &-loaded &-secondary,
+  &-loaded &-editor-wrapper {
+    display: block;
+  }
+
+  @media only screen and (min-width: 1061px) {
+    &-default-secondary {
+      display: block;
+    }
+  }
+
+  &-loading-bar, {
     position: fixed;
     top: 0;
     height: 4px;
@@ -28,8 +58,15 @@
     transition: transform ease-in 300ms;
     animation: fullscreenMDXBreadboardTheme-progress 2s cubic-bezier(.4,.45,.6,.55) infinite;
   }
-  &-loaded {
+  &-loaded &-loading-bar {
     transform: translateY(-5px);
+  }
+  &-modes {
+    opacity: 0;
+    transition: opacity ease-out 300ms;
+  }
+  &-loaded &-modes {
+    opacity: 1;
   }
 
   &-editor {

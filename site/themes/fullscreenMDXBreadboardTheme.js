@@ -37,13 +37,16 @@ class Editor extends Component {
 
 export default {
   maxSinglePaneWidth: 800,
-  
+
   renderBreadboard: function(props) {
     const {
       consoleMessages,
       transformedSource,
       transformError,
       executionError,
+
+      defaultMode,
+      defaultSecondary,
 
       renderEditorElement,
       renderMountElement,
@@ -55,52 +58,33 @@ export default {
       onToggleWrapped,
     } = props
 
-    const activeModeCount = Object.values(modes).reduce((acc, x) => acc + x || 0, 0)
-
-    let sourceLayout = {
-      position: 'relative',
-      flexBasis: 600,
-      flexGrow: 0,
-      flexShrink: 1,
-    }
-    if (activeModeCount === 1) {
-      sourceLayout = {
-        position: 'relative',
-        flexBasis: 600,
-        flexGrow: 1,
-        flexShrink: 1,
-        overflow: 'auto',
-      }
-    }
-
-    const secondaryLayout = {
-      position: 'relative',
-      flexBasis: 600,
-      flexGrow: 1,
-      flexShrink: 1,
-      overflow: 'auto',
-    }
+    const singleMode = Object.values(modes).reduce((acc, x) => acc + x || 0, 0) === 1
 
     return (
-      <div className={cx.root()}>
-        <div className={cx(!ExecutionEnvironment.canUseDOM ? 'loading' : 'loaded')} />
+      <div className={cx.root(null, ExecutionEnvironment.canUseDOM ? 'loaded' : 'static')}>
+        <div className={cx('loading-bar')} />
         <nav>
           { modes.transformed &&
             <span className={cx('wrapper', { active: !unwrapped })} onClick={onToggleWrapped}>Wrap</span>
           }
           <span className={cx('modes')}>
-            { activeModeCount === 1 &&
+            { singleMode &&
               <span className={cx('mode', { active: modes.source })} onClick={modeActions.selectSource}>Source</span>
             }
             <span className={cx('mode', { active: modes.transformed })} onClick={modeActions.selectTransformed}>Output</span>
             <span className={cx('mode', { active: modes.view })} onClick={modeActions.selectView}>Preview</span>
           </span>
         </nav>
+
         { modes.source &&
-          renderEditorElement({ layout: sourceLayout })
+          <div className={cx('editor-wrapper', defaultMode === 'source' ? 'default-primary' : 'default-secondary', { expand: singleMode })}>
+            {
+              renderEditorElement({ layout: { width: '100%', height: '100%' } })
+            }
+          </div>
         }
-        { (activeModeCount > 1 || !modes.source) && (transformError || (modes.view && executionError)) &&
-          <div className={cx('error')} style={secondaryLayout}>
+        { (!singleMode || !modes.source) && (transformError || (modes.view && executionError)) &&
+          <div className={cx('error', 'secondary', (defaultMode === 'view' || defaultMode === 'transformed') ? 'default-primary' : 'default-secondary')}>
             <pre>
               <span className={cx('error-title')}>Failed to Compile</span>
               {(transformError || executionError).toString()}
@@ -108,16 +92,15 @@ export default {
           </div>
         }
         { modes.view && !transformError && !executionError &&
-          <div className={cx('preview')} style={secondaryLayout}>
+          <div className={cx('preview', 'secondary', defaultMode === 'view' ? 'default-primary' : 'default-secondary')}>
             {renderMountElement()}
           </div>
         }
         { modes.transformed && !transformError &&
           <HighlightedCodeBlock
-            className={cx('transformed')}
+            className={cx('transformed', 'secondary', defaultMode === 'transformed' ? 'default-primary' : 'default-secondary')}
             language="javascript"
             source={transformedSource}
-            style={secondaryLayout}
           />
         }
       </div>
