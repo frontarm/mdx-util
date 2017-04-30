@@ -23,12 +23,34 @@ function ThemedMDXBreadboard({ defaultSource, ...other }) {
 
 
 function breadboardRequire(name) {
-  if (name === 'react') {
-    return require('react')
+  switch (name) {
+    case 'react':
+      return require('react')
+
+    case 'armo-breadboard':
+      return { MDXBreadboard: ThemedMDXBreadboard }
+
+    case './components/Warning':
+      return require('../../examples/components/Warning')
+
+    default:
+      console.warn('Breadboard tried to import unknown module ', name)
   }
-  else if (name === 'armo-breadboard') {
-    return { a: 1, MDXBreadboard: ThemedMDXBreadboard }
-  }
+}
+
+
+function headingFactory(type, props, ...children) {
+  // Render the same props and children that were passed in, but append a
+  // link to this title with the text '#'.
+  return React.createElement(
+    type,
+    {
+      ...props,
+      className: cx('hash-heading'),
+    },
+    ...children,
+    <a href={'#'+props.id} className={cx('hash')}>#</a>
+  )
 }
 
 
@@ -51,6 +73,11 @@ export default class MDXWrapper extends Component {
           defaultSource={page.content}
           theme={fullscreenMDXBreadboardTheme}
           require={breadboardRequire}
+          factories={{
+            h1: (props, children) => headingFactory('h1', props, children),
+            h2: (props, children) => headingFactory('h2', props, children),
+            h3: (props, children) => headingFactory('h3', props, children),
+          }}
         />
       </div>
     )

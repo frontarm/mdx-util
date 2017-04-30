@@ -21,7 +21,15 @@ MDXC also lets you:
 - Use React `props` within Markdown
 - Use [markdown-it](https://github.com/markdown-it/markdown-it) parser plugins
 
+To see all this in action, try out some of the examples.
 
+
+
+
+Try it out
+----------
+
+This website is built with MDXC. In fact, once the page has loaded you can edit it live! Just click in the left pane -- or click the "Source" button if you're on a small screen -- and start typing!
 
 
 Usage
@@ -32,12 +40,73 @@ To start using MDX documents, you can either use the supplied command-line tool,
 
 ### Command Line
 
-Test
+```bash
+# Install the `mdxc` command line tool using npm
+npm install -g mdxc
+
+# Create a file with a single heading
+echo '# Hello, World' > example.mdx
+
+# Output the compiled component to your console
+mdxc example.mdx
+
+# Call `mdxc --help` for more details
+> mdxc --help
+```
+
+
+
 
 
 ### Webpack
 
-Test
+MDXC works great with [Webpack](https://webpack.js.org/), allowing you to `import` and use your Markdown documents as React components. For example:
+
+```jsx
+import Document from './content/home.md'
+
+ReactDOM.render(
+  <Document />
+  document.getElementById('app')
+)
+```
+
+
+To make this magic happen in an existing Webpack-based project, you'll need to install and configure [mdx-loader](http://github.com/jamesknelson/mdx-loader). Bearing in mind that MDXC outputs ES2015, you'll also want to run the result through Babel.
+
+
+
+```bash
+# Add mdx-loader to your project
+npm install --save-dev mdx-loader
+```
+
+Assuming you're using Webpack 2, you'll then need to add an entry to your `module.rules` array:
+
+```js
+module: {
+  rules: [
+    /**
+     * MDX is a tool that converts Markdown files to React components. This 
+     * loader uses MDX to create Page objects for Markdown files. As it
+     * produces ES2015, the result is then passed through babel.
+     */
+    { test: /\.mdx?$/,
+      use: [
+        'babel-loader',
+        'mdx-loader',
+      ]
+    },
+
+    // ...
+  ]
+},
+```
+
+
+
+
+
 
 
 API

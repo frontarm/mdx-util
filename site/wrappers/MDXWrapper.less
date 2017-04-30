@@ -10,4 +10,15 @@
     bottom: auto;
     height: auto;
   }
+
+  &-hash {
+    transition: opacity 200ms ease-out;
+    opacity: 0;
+    color: #aaa;
+    margin-left: 8px;
+    cursor: pointer;
+  }
+  &-hash-heading:hover &-hash {
+    opacity: 1;
+  }
 }

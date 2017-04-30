@@ -67,7 +67,7 @@ export default ({ environment }) => {
   // 
   // This Site object will be passed through each of the transforms
   // defined above, from top to bottom.
-  const site = createSite(require('./index.page.js'), siteTransformer)
+  const site = createSite(require('./content/index.page.js'), siteTransformer)
 
   return site
 }

@@ -47,15 +47,19 @@
     left: 155px;
   }
 
-  @media only screen and (min-width: 1061px) {
+  @media only screen and (min-width: 965px) {
     > nav {
-      position: fixed;
       left: 50%;
       padding-left: 78px;
     }
 
     &-default-secondary {
       display: block;
+    }
+  }
+  @media only screen and (max-width : 639px) {
+    > nav {
+      left: 12px !important;
     }
   }
 
