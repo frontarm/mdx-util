@@ -1,6 +1,6 @@
 <img src="https://raw.githubusercontent.com/jamesknelson/mdxc/master/media/logo.png" alt="MDXC" width="250" />
 
-*A tool to convert Markdown files into React components.* [Try it yourself](http://dump.jamesknelson.com/mdxc-playground.html) with the MDXC Playground.
+MDXC is a tool to convert Markdown into React Components. *It lets you import and use other React Components within your Markdown.* [Try it yourself](http://mdxc.reactarmory.com/) with the MDXC Playground.
 
 [![npm version](https://img.shields.io/npm/v/mdxc.svg)](https://www.npmjs.com/package/mdxc)
 
@@ -14,7 +14,7 @@ Writing with MDX let's you use the full power of React, even when writing conten
 
 ## Try it yourself
 
-You can try your hand at MDX using the [online demo](http://dump.jamesknelson.com/mdxc-playground.html), or the old fashioned way:
+You can try your hand at MDX using the [online demo](http://mdxc.reactarmory.com/), or the old fashioned way:
 
 ```bash
 # Install the `mdxc` command line tool using npm
