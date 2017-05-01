@@ -23,7 +23,7 @@ export default class SiteWrapper extends Component {
 
     return (
       <div className={cx.root()}>
-        <a className={cx('github-ribbon')} href="https://github.com/simonwhitaker/github-fork-ribbon-css" title="Fork me on GitHub">Fork me on GitHub</a>
+        <a className={cx('github-ribbon')} href="https://github.com/jamesknelson/mdxc" title="Fork me on GitHub">Fork me on GitHub</a>
         <nav>
           <Link page='/site/content/index.page.js' theme={logoLinkTheme} exact>
             <img src={require('../../media/logo-white.png')} />

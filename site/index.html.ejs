@@ -8,15 +8,15 @@
   <meta property="og:site_name" content="MDXC" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary" />
+  <meta name="twitter:creator" content="James K Nelson" />
 
   <% if (page.metaDescription) { %>
     <meta name="description" content="<%- page.metaDescription %>" />
     <meta property="og:description" content="<%- page.metaDescription %>" />
     <meta name="twitter:description" content="<%- page.metaDescription %>" />
-  <% } %>
-  <% if (page.metaTitle) { %>
-    <meta property="og:title" content="<%- page.metaTitle %>" />
-    <meta name="twitter:title" content="<%- page.metaTitle %>" />
+
+    <meta property="og:title" content="<%- page.metaTitle || page.title %>" />
+    <meta name="twitter:title" content="<%- page.metaTitle || page.title %>" />
   <% } %>
   <% if (page.metaImage) { %>
     <meta property="og:image" content="<%- page.metaImage %>" />
