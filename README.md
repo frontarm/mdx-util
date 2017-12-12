@@ -66,7 +66,7 @@ p({},
 
 ### Attributes
 
-Because an MDX file compiles to a React Component, you'll need to name use React-style attributes.
+Because an MDX file compiles to a React Component, you'll need to use React-style attributes like `className` (as opposed to `class`).
 
 ```markdown
 <div className='super-classy' style={{textTransform: 'uppercase'}}>classy</div>
