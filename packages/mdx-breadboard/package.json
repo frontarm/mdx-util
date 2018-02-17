@@ -1,6 +1,6 @@
 {
   "name": "mdx-breadboard",
-  "version": "0.2.5",
+  "version": "1.1.0",
   "description": "Edit an MDX file in real time, with preview.",
   "author": "James K Nelson <james@jamesknelson.com>",
   "license": "MIT",
