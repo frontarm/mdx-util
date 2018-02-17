@@ -1,0 +1,69 @@
+.Navbar-link {
+  display: block;
+  margin: 5px 0 5px 12px;
+}
+
+@media only screen and (max-width : 639px) {
+  .Navbar-link {
+    display: inline-block;
+    margin: 0 0 5px 10px;
+  }
+}
+
+
+.Navbar {
+  background-color: #181818;
+}
+.Navbar a {
+  text-decoration: underline;
+}
+
+.Navbar-brand {
+  display: block;
+  width: 125px;
+  margin: 25px auto 0;
+}
+.Navbar-brand > img {
+  position: relative;
+  max-width: 100%;
+  opacity: 0.5;
+}
+.Navbar-brand-active > img {
+  opacity: 0.7;
+}
+
+.Navbar-description {
+  font-size: 13px;
+  font-family: Inconsolata, sans-serif;
+  text-align: center;
+  margin: 0 12px 25px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.Navbar-heading {
+  display: block;
+  margin: 15px 12px 5px;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-family: Roboto, sans-serif;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.Navbar-link {
+  font-size: 14px;
+  font-family: Roboto, sans-serif;
+  color: rgba(255, 255, 255, 0.5);
+}
+.Navbar-link-active {
+  color: rgba(255, 255, 255, 0.7);
+  text-shadow: 0 0 2px rgba(255, 255, 255, 0.2);
+}
+
+.Navbar-github-stars {
+  margin-left: 12px;
+  margin-top: 15px;
+}
+.Navbar-github-stars > a {
+  color: #181818;
+}

@@ -1,62 +1,18 @@
 {
-  "name": "mdxc",
-  "version": "1.0.0",
-  "description": "A tool to convert Markdown into React components",
-  "author": "James K Nelson <james@jamesknelson.com>",
-  "license": "MIT",
-  "main": "lib/mdxc.js",
-  "bin": {
-    "mdxc": "./bin/mdxc.js"
+  "private": true,
+  "devDependencies": {
+    "cross-env": "^5.0.5",
+    "lerna": "^2.1.2",
+    "rimraf": "^2.6.2"
   },
   "scripts": {
-    "clean": "rimraf lib",
-    "build:watch": "cross-env BABEL_ENV=commonjs babel --watch --source-maps=inline -d lib/ source/",
-    "build": "cross-env BABEL_ENV=commonjs babel source --out-dir lib",
-    "prepublish": "npm run clean && npm run build",
-    "test": "npm run build && mocha test/*.test.js",
-    "site:start": "sitepack start -c site/sitepack.config.js",
-    "site:clean": "rimraf site/build",
-    "site:build": "npm run site:clean && sitepack build -c site/sitepack.config.js -o site/build",
-    "site:publish": "npm run site:build && cp ./CNAME site/build && cd site/build && git init && git commit --allow-empty -m 'update site' && git checkout -b gh-pages && touch .nojekyll && git add . && git commit -am 'update site' && git push git@github.com:jamesknelson/mdxc gh-pages --force",
-    "site:view": "sitepack view -d site/build"
+    "build": "lerna run --parallel build",
+    "build:watch": "lerna run --parallel build:watch",
+    "test": "lerna run --parallel test",
+    "test:watch": "lerna run --parallel test:watch"
   },
-  "keywords": [
-    "markdown",
-    "jsx",
-    "mdx"
-  ],
-  "devDependencies": {
-    "armo-breadboard": "0.2.2",
-    "babel-cli": "^6.24.1",
-    "babel-plugin-transform-class-properties": "^6.22.0",
-    "babel-plugin-transform-object-rest-spread": "^6.22.0",
-    "babel-preset-latest": "^6.22.0",
-    "babel-preset-react": "^6.23.0",
-    "classnames": "^2.2.5",
-    "cross-env": "^3.1.4",
-    "exenv": "^1.2.2",
-    "less": "^2.7.2",
-    "less-loader": "^4.0.2",
-    "loader-utils": "^1.1.0",
-    "markdown-it-testgen": "^0.1.4",
-    "mocha": "^3.2.0",
-    "prismjs": "^1.6.0",
-    "raw-loader": "^0.5.1",
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2",
-    "react-textarea-autosize": "^4.1.0",
-    "rimraf": "^2.6.1",
-    "sitepack": "^1.0.0-beta.12",
-    "sitepack-react": "1.0.0-beta.12"
-  },
-  "dependencies": {
-    "babel-core": "^6.24.0",
-    "babel-plugin-syntax-jsx": "^6.18.0",
-    "babel-plugin-transform-react-jsx": "^6.23.0",
-    "commander": "^2.9.0",
-    "front-matter": "^2.1.2",
-    "markdown-it": "^8.2.2",
-    "parsimmon": "^1.2.0",
-    "slugify": "^1.1.0"
-  }
+  "workspaces": [
+    "packages/*",
+    "site"
+  ]
 }

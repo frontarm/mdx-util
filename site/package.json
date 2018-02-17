@@ -1,0 +1,28 @@
+{
+  "name": "site",
+  "version": "0.4.4",
+  "private": true,
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "junctions": "^0.4.6",
+    "junctions-static": "^0.4.6",
+    "prismjs": "^1.6.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-junctions": "^0.4.4",
+    "react-scripts": "1.0.17",
+    "react-textarea-autosize": "^4.1.0",
+    "rimraf": "^2.6.2"
+  },
+  "scripts": {
+    "clean": "rimraf build",
+    "start": "react-scripts start",
+    "build": "react-scripts build && junctions-static build -m build/static/js/main.*.js -r create-react-app",
+    "test": "react-scripts test --env=jsdom",
+    "publish": "npm run clean && npm run build && cp ../CNAME ./build && cd build && git init && git commit --allow-empty -m 'update docs' && git checkout -b gh-pages && touch .nojekyll && git add . && git commit -am 'update docs' && git push git@github.com:jamesknelson/mdxc gh-pages --force",
+    "view": "junctions-static view -p 3000"
+  },
+  "devDependencies": {
+    "raw-loader": "^0.5.1"
+  }
+}

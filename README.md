@@ -29,7 +29,7 @@ mdxc example.mdx
 
 Other ways to use MDX include:
 
-- Use it with [Sitepack](#sitepack) to build static websites
+- Use it with [create-react-app](#create-react-app) to build static websites
 - Use it with [Webpack](#webpack-with-mdx-loader)
 - Use the [API](#api) directly
 
@@ -306,22 +306,26 @@ Options:
   -u, --unwrapped      don't wrap the content in a React component
 ```
 
-### Sitepack
+### create-react-app
 
-**MDXC was originally created as a plugin for Sitepack.**
+MDX can be used with unejected create-react-app projects! To start, you'll need to add a `.babelrc` file to the root level of your project:
 
-[Sitepack](http://github.com/jamesknelson/sitepack) is a wrapper around Webpack. It gives you a way to add pages to your website using plain-old `require()`, it handles the nasty parts of Webpack configuration for you, and it does all this while performing the magic required to build a static HTML version of each of your pages. As it happens, the MDXC website is built with Sitepack.
-
-If your plan is to use MDX to write an actual *website* (you know, with pages and links and no "login" button), then Sitepack is worth giving a try. It's documentation is still in its infancy, but you can get around this by using the **sitepack-react-starter-kit** which supports MDX out of the box.
-
-```bash
-git clone https://github.com/jamesknelson/sitepack-react-starter-kit.git
-cd sitepack-react-starter-kit
-npm install
-npm start
+```
+{
+    "presets": ["babel-preset-react-app"]
+}
 ```
 
-Once you've cloned, installed and started sitepack, open your browser at <http://localhost:4000> and start editing the `md` files in the `content` directory -- changes will be reflected live! When you're ready to release, build your site with `npm run build`.
+Then, you can import a component from any Markdown file by prepending the filename with `!babel-loader!mdx-loader!`. For example:
+
+```
+/* eslint-disable import/no-webpack-loader-syntax */
+import DocumentComponent from '!babel-loader!mdx-loader!../pages/index.md'
+```
+
+You can also import documents dynamically using the proposed `import()` syntax.
+
+For an example of a statically rendered site using create-react-site and MDX, see [the source](https://github.com/jamesknelson/junctions/tree/master/site) for the [Junctions router site](https://junctions.js.org/tutorial/#Markdown-Components).
 
 ### Webpack with mdx-loader
 
@@ -470,6 +474,7 @@ module.exports = function mdxLoader(content) {
 ## MDX in the wild
 
 - [junctions](https://junctions.js.org), a router for React ([website source](https://github.com/jamesknelson/junctions/tree/master/docs))
+- [React Armory](https://reactarmory.com)
 - *create a PR to add your own site!*
 
 ## Acknowledgments
