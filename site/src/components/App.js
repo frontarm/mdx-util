@@ -44,8 +44,8 @@ export const AppJunctionTemplate = createJunctionTemplate({
       component: MDXWrapper,
       getContent: () => import('!raw-loader!../pages/index.md'),
       meta: {
-        socialTitle: 'Junctions',
-        socialDescription: 'A batteries-included router for React.',
+        socialTitle: 'MDX',
+        socialDescription: 'Mix JSX with Markdown. Import Markdown like any other component. Use it with create-react-app or Webpack.',
       },
     }),
 
