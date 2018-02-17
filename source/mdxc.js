@@ -14,6 +14,7 @@ slugify.extend({
 
 
 const DEFAULT_FACTORIES = {
+  'wrapper': 'createFactory(\'div\')',
   'codeBlock': '(props, children) => createElement("pre", props, createElement("code", { dangerouslySetInnerHTML: { __html: children || props.children } }))'
 }
 
@@ -152,10 +153,10 @@ module.exports = class MDXC extends MarkdownIt {
     return this.options.unwrapped ? rendered+'\n' : `${imports}
 ${isCommonJS ? 'module.exports =' : 'export default'} function({ ${this.props.join(', ') } }) {
   const {
-    wrapper = createFactory('div'),
-`+(tags.length == 0 ? '' : tags.map(tag =>
+` + tags.concat('wrapper').map(tag =>
 `    ${tag} = ${this.getFactoryForTag(tag)},`
-).join('\n')+'\n')+`  } = factories
+).join('\n') + `
+  } = factories
 
   return ${result}
 }
