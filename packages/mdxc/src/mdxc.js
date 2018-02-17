@@ -4,6 +4,7 @@ import Renderer from './jsxRenderer'
 import importsToCommonJS from './importsToCommonJS'
 import jsx_inline from './jsx_inline'
 import jsx_block from './jsx_block'
+import text_with_newline from './text_with_newline'
 
 
 slugify.extend({
@@ -20,10 +21,12 @@ const DEFAULT_FACTORIES = {
 
 function mdJSX(md) {
   // JSX should entirely replace embedded HTML.
+  md.inline.ruler.before('text', 'text_with_newline', text_with_newline);
   md.inline.ruler.before('html_inline', 'jsx_inline', jsx_inline);
   md.block.ruler.before('html_block', 'jsx_block', jsx_block, [ 'paragraph', 'reference', 'blockquote', 'list' ]);
 
   md.disable('html_inline');
+  md.disable('text');
   md.disable('html_block');
 }
 

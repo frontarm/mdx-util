@@ -46,5 +46,5 @@ describe('mdxc', function () {
     ]
   })
 
-  generate(path.join(__dirname, 'fixtures/importsArray'), mdxImportsArray);  
+  generate(path.join(__dirname, 'fixtures/importsArray'), mdxImportsArray);
 });

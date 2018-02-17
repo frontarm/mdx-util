@@ -1,0 +1,41 @@
+{
+  "name": "mdxc",
+  "version": "1.1.0-0",
+  "description": "A tool to convert Markdown into React components",
+  "author": "James K Nelson <james@jamesknelson.com>",
+  "license": "MIT",
+  "main": "lib/mdxc.js",
+  "bin": {
+    "mdxc": "./bin/mdxc.js"
+  },
+  "scripts": {
+    "clean": "rimraf lib",
+    "build:watch": "cross-env BABEL_ENV=development babel --watch --source-maps=inline -d lib/ src/",
+    "build": "cross-env BABEL_ENV=production babel src --out-dir lib",
+    "prepublish": "npm run clean && npm run build",
+    "test": "npm run build && mocha test/*.test.js"
+  },
+  "keywords": [
+    "markdown",
+    "jsx",
+    "mdx"
+  ],
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.26.0",
+    "babel-preset-react-app": "^3.1.1",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
+    "cross-env": "^3.1.4",
+    "markdown-it-testgen": "^0.1.4",
+    "mocha": "^3.2.0",
+    "rimraf": "^2.6.1"
+  },
+  "dependencies": {
+    "babel-standalone": "^6.26.0",
+    "commander": "^2.9.0",
+    "front-matter": "^2.1.2",
+    "markdown-it": "^8.2.2",
+    "parsimmon": "^1.2.0",
+    "slugify": "^1.1.0"
+  }
+}

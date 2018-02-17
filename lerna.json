@@ -1,0 +1,10 @@
+{
+  "npmClient": "yarn",
+  "useWorkspaces": true,
+  "lerna": "2.1.2",
+  "packages": [
+    "packages/*",
+    "site"
+  ],
+  "version": "1.1.0-0"
+}

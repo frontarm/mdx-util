@@ -35,12 +35,12 @@ export default function transform(source) {
     });
 }
 
-function handleSpecificImports(specificImports: string, source: string) {
+function handleSpecificImports(specificImports, source) {
   specificImports = specificImports.replace(/ as /g, ': ');
   return `const { ${specificImports} } = require(${source})`;
 }
 
-function handleDefaultImports(defaultAs: string, defaultAsVar: string, defaultImport: string, source: string) {
+function handleDefaultImports(defaultAs, defaultAsVar, defaultImport, source) {
   if (defaultAs) {
     return `const ${defaultAsVar.trim()} = require(${source})`;
   } else {

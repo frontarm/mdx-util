@@ -23,6 +23,24 @@ createElement(
 )
 .
 
+.
+<div>
+  <markdown>
+    Markdown has line end characters
+    between lines.
+  </markdown>
+</div>
+.
+createElement(
+  "div",
+  null,
+  wrapper({},
+    p({},
+      "Markdown has line end characters\nbetween lines.",
+    ),
+  ),
+)
+.
 
 .
 <div>
@@ -115,11 +133,13 @@ createElement(
 .
 p({},
   createElement(Block, null,
+    "\n  ",
     createElement("markdown", null,
-      "# ",
+      "\n    # ",
       code({}, "<markdown>"),
-      " tags must end at the same indentation level that they started at",
+      " tags must end at the same indentation level that they started at\n    ",
     ),
+    "\n",
   ),
 )
 .
@@ -135,12 +155,13 @@ p({},
 .
 p({},
   createElement(Block, null,
+    "\n  ",
     createElement("markdown", null,
-      "# ",
+      "\n    # ",
       code({}, "<markdown>"),
-      " tag content must",
-      "not reduce in indentation",
+      " tag content must\n  not reduce in indentation\n  ",
     ),
+    "\n",
   ),
 )
 .

@@ -1,0 +1,26 @@
+{
+  "name": "mdx-loader",
+  "version": "1.0.0",
+  "description": "Webpack loader for MDXC",
+  "main": "index.js",
+  "keywords": [
+    "markdown",
+    "jsx",
+    "webpack",
+    "loader",
+    "mdx"
+  ],
+  "author": "James K Nelson <james@jamesknelson.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "mdxc": "^1.0.0"
+  },
+  "peerDependencies": {
+    "mdxc": "^1.0.0"
+  },
+  "dependencies": {
+    "front-matter": "^2.1.2",
+    "loader-utils": "^1.1.0",
+    "prismjs": "^1.6.0"
+  }
+}

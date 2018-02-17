@@ -87,6 +87,9 @@ const default_rules = {
 
 
   text: function (tokens, idx, options, env, slf) {
+    if (tokens[idx].content === "") {
+      return
+    }
     return slf.indent(JSON.stringify(tokens[idx].content));
   },
 
@@ -298,4 +301,5 @@ Renderer.prototype.render = function (tokens, options, env) {
   return result.join(',\n');
 };
 
-module.exports = Renderer;
+
+export default Renderer

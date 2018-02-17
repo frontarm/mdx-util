@@ -1,0 +1,42 @@
+{
+  "name": "mdx-breadboard",
+  "version": "0.2.5",
+  "description": "Edit an MDX file in real time, with preview.",
+  "author": "James K Nelson <james@jamesknelson.com>",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "scripts": {
+    "clean": "rimraf lib",
+    "build:watch": "cross-env BABEL_ENV=development babel --watch --source-maps=inline -d lib/ src/",
+    "build": "cross-env BABEL_ENV=production babel src --out-dir lib",
+    "prepublish": "npm run clean && npm run build"
+  },
+  "keywords": [
+    "playground",
+    "react",
+    "component",
+    "breadboard",
+    "armo",
+    "live"
+  ],
+  "peerDependencies": {
+    "mdxc": "^1.0.0",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
+    "babel-preset-react-app": "^3.1.1",
+    "cross-env": "^3.1.4",
+    "rimraf": "^2.6.1"
+  },
+  "dependencies": {
+    "exenv": "^1.2.1",
+    "hatt": "^0.2.1",
+    "hoist-non-react-statics": "^1.2.0",
+    "prop-types": "^15.6.0",
+    "react-controllers": "^0.1.1",
+    "resize-observer-polyfill": "^1.4.2"
+  }
+}

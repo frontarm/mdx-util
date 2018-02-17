@@ -136,8 +136,7 @@ p({},
   "test",
 ),
 p({},
-  "<Block",
-  "</Block>",
+  "<Block\n</Block>",
 ),
 p({},
   "test",
@@ -152,9 +151,9 @@ p({},
 </B>
 .
 p({},
-  "<A>",
+  "<A>\n  ",
   createElement(B, null,
-    "</A>",
+    "\n</A>\n",
   ),
 )
 .
@@ -166,7 +165,7 @@ p({},
 </B>
 .
 p({},
-  "<A>",
+  "<A>\n  ",
   createElement(B, null),
 )
 .
