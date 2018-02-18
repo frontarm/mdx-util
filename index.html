@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <meta property="og:site_name" content="MDXC" />
+    <meta property="og:type" content="article" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:creator" content="james_k_nelson" />
+    <meta property="og:image" content="https://mdxc.reactarmory.com/logo.png?2" />
+    <meta name="twitter:image" content="https://mdxc.reactarmory.com/logo.png?2" />
+    <meta property="og:title" content="MDX" />
+    <meta name="twitter:title" content="MDX" />
+    <meta name="description" content="Mix JSX with Markdown. Import Markdown like any other component. Use it with create-react-app or Webpack." />
+    <meta property="og:description" content="Mix JSX with Markdown. Import Markdown like any other component. Use it with create-react-app or Webpack." />
+    <meta name="twitter:description" content="Mix JSX with Markdown. Import Markdown like any other component. Use it with create-react-app or Webpack." />
+    
+    <title>MDXC</title>
+  <link rel="stylesheet" type="text/css" href="/static/css/main.ed1c3cca.css" />
+  <body>
+    <div id="root"><div id="JUNCTIONS_STATIC" data-reactroot=""><div class="App"><a class="App-github-ribbon" href="https://github.com/jamesknelson/mdxc" title="Fork me on GitHub">Fork me on GitHub</a><nav class="Navbar App-nav"><a href="/" class="Navbar-brand Navbar-brand-active"><img src="/logo-white.png"/></a><p class="Navbar-description">React Components within Markdown</p><span class="Navbar-heading">Examples</span><a href="/examples/basics" class="Navbar-link  ">Basics</a><a href="/examples/import" class="Navbar-link  ">Imports</a><a href="/examples/props" class="Navbar-link  ">Props</a><a href="/examples/factories" class="Navbar-link  ">Factories</a><div class="Navbar-github-stars"><a class="github-button" href="https://github.com/jamesknelson/mdxc" data-icon="octicon-star" data-show-count="true" aria-label="Star jamesknelson/mdxc on GitHub">Star</a></div></nav><main class="App-content"><div class="MDXWrapper"><div class="
+    MDXWrapper-LoadingIndicator
+    MDXWrapper-LoadingIndicator-done
+  "></div><div class="MDXWrapper-ready"><div class="fullscreenMDXBreadboardTheme fullscreenMDXBreadboardTheme-loaded "><div class="fullscreenMDXBreadboardTheme-loading-bar"></div><nav><span class="fullscreenMDXBreadboardTheme-modes"><span class="fullscreenMDXBreadboardTheme-mode">Output</span><span class="fullscreenMDXBreadboardTheme-mode fullscreenMDXBreadboardTheme-active">Preview</span></span></nav><div class="fullscreenMDXBreadboardTheme-editor-wrapper fullscreenMDXBreadboardTheme-default-secondary"><div class="fullscreenMDXBreadboardTheme-editor" style="width:100%;height:100%"><textarea class="fullscreenMDXBreadboardTheme-editor-textarea" style="height:0">import { MDXBreadboard } from &#x27;mdx-breadboard&#x27;
+
+MDXC
+====
+
+MDXC is a tool to convert Markdown into React Components. It lets you `import` and use other Components within your Markdown. Like so:
+
+&lt;MDXBreadboard defaultMode=&#x27;view&#x27; defaultSource={`
+import { MDXBreadboard } from &#x27;mdx-breadboard&#x27;
+_Turtles?_
+&lt;MDXBreadboard defaultSource=&#x27;**Turtles!**&#x27; /&gt;
+`} /&gt;
+
+
+MDXC also lets you:
+
+- Use custom components to render code blocks, headings, etc.
+- Integrate Markdown links with react-router
+- Nest Markdown within JSX
+- `import` Markdown using Webpack
+- Use React `props` within Markdown
+- Use [markdown-it](https://github.com/markdown-it/markdown-it) parser plugins
+
+To see all this in action, try out some of the examples.
+
+
+
+
+Try it out
+----------
+
+This website is built with MDXC. In fact, once the page has loaded you can edit it live! Just click in the left pane -- or click the &quot;Source&quot; button if you&#x27;re on a small screen -- and start typing!
+
+
+Usage
+-----
+
+To start using MDX documents, you can either use the supplied command-line tool, you can use create-react-app, or you can configure Webpack with mdx-loader.
+
+
+### Command Line
+
+```bash
+# Install the `mdxc` command line tool using npm
+npm install -g mdxc
+
+# Create a file with a single heading
+echo &#x27;# Hello, World&#x27; &gt; example.mdx
+
+# Output the compiled component to your console
+mdxc example.mdx
+
+# Call `mdxc --help` for more details
+&gt; mdxc --help
+```
+
+### With create-react-app
+
+MDX can be used with unejected create-react-app projects! To start, you&#x27;ll need to add a `.babelrc` file to the root level of your project:
+
+```json
+{
+    &quot;presets&quot;: [&quot;babel-preset-react-app&quot;]
+}
+```
+
+Then, you can import a component from any Markdown file by prepending the filename with `!babel-loader!mdx-loader!`. For example:
+
+```js
+/* eslint-disable import/no-webpack-loader-syntax */
+import DocumentComponent from &#x27;!babel-loader!mdx-loader!../pages/index.md&#x27;
+```
+
+You can also import documents dynamically using the proposed `import()` syntax. For an example of a statically rendered site using create-react-site and MDX, see [the source](https://github.com/jamesknelson/junctions/tree/master/site) for the [Junctions router site](https://junctions.js.org/tutorial/#Markdown-Components).
+
+
+
+### Webpack
+
+MDXC works great with [Webpack](https://webpack.js.org/), allowing you to `import` and use your Markdown documents as React components. For example:
+
+```jsx
+import Document from &#x27;./content/home.md&#x27;
+
+ReactDOM.render(
+  &lt;Document /&gt;
+  document.getElementById(&#x27;app&#x27;)
+)
+```
+
+
+To make this magic happen in an existing Webpack-based project, you&#x27;ll need to install and configure [mdx-loader](http://github.com/jamesknelson/mdx-loader). Bearing in mind that MDXC outputs ES2015, you&#x27;ll also want to run the result through Babel.
+
+
+
+```bash
+# Add mdx-loader to your project
+npm install --save-dev mdx-loader
+```
+
+Assuming you&#x27;re using Webpack 2, you&#x27;ll then need to add an entry to your `module.rules` array:
+
+```js
+module: {
+  rules: [
+    /**
+     * MDX is a tool that converts Markdown files to React components. This 
+     * loader uses MDX to create Page objects for Markdown files. As it
+     * produces ES2015, the result is then passed through babel.
+     */
+    { test: /\.mdx?$/,
+      use: [
+        &#x27;babel-loader&#x27;,
+        &#x27;mdx-loader&#x27;,
+      ]
+    },
+
+    // ...
+  ]
+},
+```
+
+
+
+
+
+
+
+API
+---
+
+At its core, MDXC is just a wrapper around the excellent and highly configurable [markdown-it](https://github.com/markdown-it/markdown-it) project. This means that its API is mostly the same.
+
+The major difference is that the default renderer from markdown-it has been replaced with a non-configurable renderer. Existing markdown-it plugins will work, but any hooks on the renderer will silently fail. This is the behavior you want, as these hooks transform HTML strings, and MDXC doesn&#x27;t use any HTML strings. If you need to transform the output, use factories instead.
+
+To transform MDX into JavaScript, create an instance of the `MDXC` class and then call its `render` method. If you&#x27;d like to load any markdown-it plugins, call the `use` method on your `MDXC` instance before calling `render`.
+
+
+
+
+
+
+```js
+import MDXC from &#x27;mdxc&#x27;
+
+var mdxc = new MDXC({
+  linkify: true,
+  typographer: true,
+})
+
+var js = mdxc.render(&#x27;# This is a heading&#x27;)
+```
+
+
+
+The options to `mdxc` are mostly the same as the options for markdown-it. For details, see the [markdown-it](https://markdown-it.github.io/markdown-it/) API docs.
+
+MDXC also provides a few extra options.
+
+- `commonJS` *bool* If true, your imports/exports will be transformed to use `require()` and `module.exports`
+- `unwrapped` *bool* If true, the component definition boilerplate will be omitted
+- `pragma` *string* Allows you to set the JSX pragma to something other than the default of `React.createElement`. Setting the pragma will stop mdxc from importing `React` by default.
+
+
+
+MDX in the wild
+---------------
+
+- [Junctions](https://junctions.js.org), a tool for handling navigation history within React applications
+- [React Armory](https://reactarmory.com)
+- *Add your site via PR!*
+
+
+Acknowledgments
+---------------
+
+Mad props to [markdown-it](https://github.com/markdown-it/markdown-it) for doing the hard yards which make MDXC possible. Also, [markdown-it-jsx](https://github.com/osnr/markdown-it-jsx) provided the base for parsing JSX tags out of Markdown files. Finally, there would be no use making MDXC unless React, Webpack and Babel already existed.
+
+
+Contributing
+------------
+
+Help is muchly appreciated! In particular, PRs for the following would be super duper great:
+
+- Improved tests
+- Refactoring existing code to be prettier and faster
+- Generating more concise JavaScript</textarea></div></div><div class="fullscreenMDXBreadboardTheme-preview fullscreenMDXBreadboardTheme-secondary fullscreenMDXBreadboardTheme-default-primary"><div></div></div></div></div></div></main><footer class="App-footer"><a class="App-footer-author" href="https://twitter.com/james_k_nelson">By @james_k_nelson</a></footer></div></div></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  <script src="/static/js/main.3f9e3cb8.js"></script><script src="/static/js/1.8d91ae8c.chunk.js"></script><script>window.JunctionsStaticApp.main()</script>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <meta property="og:site_name" content="MDXC" />
+    <meta property="og:type" content="article" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:creator" content="james_k_nelson" />
+    <meta property="og:image" content="https://mdxc.reactarmory.com/logo.png?2" />
+    <meta name="twitter:image" content="https://mdxc.reactarmory.com/logo.png?2" />
+    <meta property="og:title" content="MDXC: Factories" />
+    <meta name="twitter:title" content="MDXC: Factories" />
+    <meta name="description" content="Learn how to configure your Markdown with custom React Components instead of standard HTML elements" />
+    <meta property="og:description" content="Learn how to configure your Markdown with custom React Components instead of standard HTML elements" />
+    <meta name="twitter:description" content="Learn how to configure your Markdown with custom React Components instead of standard HTML elements" />
+    
+    <title>MDXC: Factories</title>
+  <link rel="stylesheet" type="text/css" href="/static/css/main.ed1c3cca.css" />
+  <body>
+    <div id="root"><div id="JUNCTIONS_STATIC" data-reactroot=""><div class="App"><a class="App-github-ribbon" href="https://github.com/jamesknelson/mdxc" title="Fork me on GitHub">Fork me on GitHub</a><nav class="Navbar App-nav"><a href="/" class="Navbar-brand "><img src="/logo-white.png"/></a><p class="Navbar-description">React Components within Markdown</p><span class="Navbar-heading">Examples</span><a href="/examples/basics" class="Navbar-link  ">Basics</a><a href="/examples/import" class="Navbar-link  ">Imports</a><a href="/examples/props" class="Navbar-link  ">Props</a><a href="/examples/factories" class="Navbar-link  ">Factories</a><div class="Navbar-github-stars"><a class="github-button" href="https://github.com/jamesknelson/mdxc" data-icon="octicon-star" data-show-count="true" aria-label="Star jamesknelson/mdxc on GitHub">Star</a></div></nav><main class="App-content"><div class="MDXWrapper"><div class="
+    MDXWrapper-LoadingIndicator
+    MDXWrapper-LoadingIndicator-done
+  "></div><div class="MDXWrapper-ready"><div class="fullscreenMDXBreadboardTheme fullscreenMDXBreadboardTheme-loaded "><div class="fullscreenMDXBreadboardTheme-loading-bar"></div><nav><span class="fullscreenMDXBreadboardTheme-modes"><span class="fullscreenMDXBreadboardTheme-mode">Output</span><span class="fullscreenMDXBreadboardTheme-mode fullscreenMDXBreadboardTheme-active">Preview</span></span></nav><div class="fullscreenMDXBreadboardTheme-editor-wrapper fullscreenMDXBreadboardTheme-default-secondary"><div class="fullscreenMDXBreadboardTheme-editor" style="width:100%;height:100%"><textarea class="fullscreenMDXBreadboardTheme-editor-textarea" style="height:0">Factories
+=========
+
+Components produced by MDXC can be configured to render custom components instead of standard HTML elements. This allows for tighter integration between your document components and React. For example:
+
+- You add `#` anchors to your titles
+- You could replace your code blocks with live examples
+- You can replace `&lt;a&gt;` tags with react-router `&lt;Link&gt;` elements
+
+To configure how HTML elements should be rendered, you pass factory functions to the special `factories` prop of your document components. For example, you could confuse your users by reversing how your headings are rendered:
+
+
+
+
+
+
+```jsx
+&lt;Document
+  factories={{
+    h1: (props, children) =&gt; React.createFactory(&#x27;h6&#x27;),
+    h2: (props, children) =&gt; React.createFactory(&#x27;h5&#x27;),
+    h3: (props, children) =&gt; React.createFactory(&#x27;h4&#x27;),
+    h4: (props, children) =&gt; React.createFactory(&#x27;h3&#x27;),
+    h5: (props, children) =&gt; React.createFactory(&#x27;h2&#x27;),
+    h6: (props, children) =&gt; React.createFactory(&#x27;h1&#x27;),
+  }}
+/&gt;
+```
+
+
+
+
+
+Factory functions are expected to take two arguments (`props` and `children`), and return a React element -- just like the functions returned by [React.createFactory](https://facebook.github.io/react/docs/react-api.html#createfactory).
+
+Each available key of the `factories` object corresponds to a HTML tag, with one exception --- `codeBlock` corresponds to a fenced block of code, and by default is rendered with `&lt;pre&gt;&lt;code&gt;`.
+
+
+
+Heading anchors
+---------------
+
+The MDXC website uses `h1`, `h2` and `h3` factories to add `#` anchors to titles. Hover over one of the titles to try it out.
+
+```jsx
+function headingFactory(type, props, ...children) {
+  // Render the same props and children that were passed in, but prepend a
+  // link to this title with the text &#x27;#&#x27;.
+  return React.createElement(
+    type,
+    props,
+    &lt;a href={&#x27;#&#x27;+props.id}&gt;#&lt;/a&gt;,
+    ...children
+  )
+}
+
+&lt;Document
+  factories={{
+    h1: (props, children) =&gt; headingFactory(&#x27;h1&#x27;, props, children),
+    h2: (props, children) =&gt; headingFactory(&#x27;h2&#x27;, props, children),
+    h3: (props, children) =&gt; headingFactory(&#x27;h3&#x27;, props, children),
+  }}
+/&gt;
+```
+
+
+
+
+
+
+Live examples
+-------------
+
+The `mdx-breadboard` package uses a `codeBlock` factory to provide live examples for code blocks fenced with the `mdx` language.
+
+```jsx
+&lt;Document
+  factories={{
+    codeBlock: (props, children) =&gt; {
+      const language = props.className.replace(/^language-/, &#x27;&#x27;)
+      if (language.slice(0, 3) === &#x27;mdx&#x27;) {
+        return &lt;MDXBreadboard defaultSource={children} /&gt;
+      }
+      else {
+        return &lt;pre {...props}&gt;&lt;code dangerouslySetInnerHTML={{ __html: children }} /&lt;/pre&gt;
+      }
+    }
+  }}
+/&gt;
+```
+
+The MDXC website website uses `mdx-breadboard`, so you can use it test out MDX!
+
+```mdx
+*So this will render a live MDX code example*
+```
+
+
+
+
+
+HTML5 History Links
+-------------------
+
+Navigation libraries like [react-router](https://reacttraining.com/react-router/web/api/Link) and [junctions](https://junctions.js.org/api/react-junctions/Link) often provide a Link component that supports `pushState`. To tell your document component to use this instead of a standard `&lt;a&gt;` tag, you can specify the `a` factory. Make sure to pass `&lt;Link&gt;` a `to` prop instead of a `href` prop.
+
+```jsx
+import { Link } from &#x27;react-router&#x27;
+
+&lt;Document
+  factories={{
+    a: ({ href, ...other }, ...children) =&gt;
+      React.createElement(Link, {
+        to: href,
+        ...other
+      }, ...children)
+  }}
+/&gt;
+```</textarea></div></div><div class="fullscreenMDXBreadboardTheme-preview fullscreenMDXBreadboardTheme-secondary fullscreenMDXBreadboardTheme-default-primary"><div></div></div></div></div></div></main><footer class="App-footer"><a class="App-footer-author" href="https://twitter.com/james_k_nelson">By @james_k_nelson</a></footer></div></div></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  <script src="/static/js/main.3f9e3cb8.js"></script><script src="/static/js/3.2e97186d.chunk.js"></script><script>window.JunctionsStaticApp.main()</script>
+</html>
