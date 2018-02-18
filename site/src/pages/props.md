@@ -43,7 +43,7 @@ Hello, <span children={firstName} />
 As is this:
 
 ```jsx
-<blockqoute>I'm afraid I can't do that, {firstName}.</blockquote>
+<blockquote>I'm afraid I can't do that, {firstName}.</blockquote>
 ```
 
 But this will just print the braces as text:
