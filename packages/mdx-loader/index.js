@@ -22,8 +22,8 @@ function highlight(str, lang) {
     return str
   } else {
     lang = aliases[lang] || lang
-    require(`prismjs/components/prism-${lang}.js`)
     if (Prism.languages[lang]) {
+      require(`prismjs/components/prism-${lang}.js`)
       return Prism.highlight(str, Prism.languages[lang])
     } else {
       return str
