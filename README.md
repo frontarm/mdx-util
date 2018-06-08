@@ -281,6 +281,9 @@ export default function ContentWrapper(props) {
 
 ## Using MDX
 
+### Videos
+(Create and import React components with Markdown using MDXC)[https://egghead.io/lessons/react-create-and-import-react-components-with-markdown-using-mdxc] by [@andrewdelprete](https://twitter.com/andrewdelprete)
+
 ### Command line
 
 A tool wouldn't be a tool without a good old CLI. It probably isn't that useful, but hey. It's the vibe, and all that. What I mean is, if you must, you may use the CLI to create `js` files from `mdx` files by hand.
