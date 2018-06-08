@@ -282,7 +282,7 @@ export default function ContentWrapper(props) {
 ## Using MDX
 
 ### Videos
-(Create and import React components with Markdown using MDXC)[https://egghead.io/lessons/react-create-and-import-react-components-with-markdown-using-mdxc] by [@andrewdelprete](https://twitter.com/andrewdelprete)
+[Create and import React components with Markdown using MDXC](https://egghead.io/lessons/react-create-and-import-react-components-with-markdown-using-mdxc) by [@andrewdelprete](https://twitter.com/andrewdelprete)
 
 ### Command line
 
