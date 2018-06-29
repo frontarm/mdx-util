@@ -82,7 +82,7 @@ The `mdx-breadboard` package uses a `codeBlock` factory to provide live examples
         return <MDXBreadboard defaultSource={children} />
       }
       else {
-        return <pre {...props}><code dangerouslySetInnerHTML={{ __html: children }} /</pre>
+        return <pre {...props}><code dangerouslySetInnerHTML={{ __html: children }} /></pre>
       }
     }
   }}
