@@ -20,8 +20,8 @@ import React, { createElement, createFactory } from 'react'
 
 export default function({ factories={} }) {
   const {
-    wrapper = createFactory('div'),
     p = createFactory('p'),
+    wrapper = createFactory('div'),
   } = factories
 
   return wrapper({},
@@ -43,8 +43,8 @@ import React, { createElement, createFactory } from 'react'
 
 export default function({ factories={} }) {
   const {
-    wrapper = createFactory('div'),
     p = createFactory('p'),
+    wrapper = createFactory('div'),
   } = factories
 
   return wrapper({},
@@ -65,8 +65,8 @@ import React, { createElement, createFactory } from 'react'
 
 export default function({ factories={} }) {
   const {
-    wrapper = createFactory('div'),
     p = createFactory('p'),
+    wrapper = createFactory('div'),
   } = factories
 
   return wrapper({},

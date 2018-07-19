@@ -1,6 +1,6 @@
 {
   "name": "mdxc",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A tool to convert Markdown into React components",
   "author": "James K Nelson <james@jamesknelson.com>",
   "license": "MIT",
