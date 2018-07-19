@@ -102,7 +102,7 @@ module.exports = class MDXC extends MarkdownIt {
     const props = ['factories={}']
     while (bodyLines[0]) {
       const line = bodyLines.shift()
-      const importMatch = line.match(/^import\s+.*\s+from\s+['"].*['"];?\s*$/)
+      const importMatch = line.match(/^(import|export)\s+.*\s+from\s+['"].*['"];?\s*$/)
       const propMatch = line.match(/^prop\s+([$_a-zA-Z][$_a-zA-Z0-9]*)\s*$/)
 
       if (importMatch) {
