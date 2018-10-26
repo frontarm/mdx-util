@@ -10,6 +10,6 @@
     "test:watch": "lerna run --parallel test:watch"
   },
   "workspaces": [
-    "packages/*"
+    "packages/mdx.macro"
   ]
 }
