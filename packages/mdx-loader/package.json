@@ -1,26 +1,26 @@
 {
   "name": "mdx-loader",
-  "version": "1.1.1",
-  "description": "Webpack loader for MDXC",
+  "version": "2.0.0-0",
   "main": "index.js",
   "keywords": [
-    "markdown",
-    "jsx",
-    "webpack",
+    "mdx",
     "loader",
-    "mdx"
+    "webpack-loader"
   ],
-  "author": "James K Nelson <james@jamesknelson.com>",
+  "description": "A batteries-included MDX loader for Webpack.",
+  "author": "James K Nelson <james@frontarm.com> (https://frontarm.com/authors/james-k-nelson/)",
   "license": "MIT",
-  "devDependencies": {
-    "mdxc": "^1.1.1"
-  },
-  "peerDependencies": {
-    "mdxc": "^1.1.1"
-  },
   "dependencies": {
-    "front-matter": "^2.1.2",
-    "loader-utils": "^1.1.0",
-    "prismjs": "^1.6.0"
+    "@mapbox/rehype-prism": "^0.3.0",
+    "@mdx-js/mdx": "^0.15.5",
+    "@mdx-js/tag": "^0.15.0",
+    "gray-matter": "^4.0.1",
+    "prismjs": "^1.15.0",
+    "remark-emoji": "^2.0.2",
+    "remark-images": "^0.8.1",
+    "remark-slug": "^5.1.0"
+  },
+  "repository": {
+    "url": "https://github.com/frontarm/mdx-util"
   }
 }

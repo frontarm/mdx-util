@@ -1,0 +1,26 @@
+{
+  "name": "mdx-constant",
+  "version": "0.1.0",
+  "main": "index.js",
+  "keywords": [
+    "mdx",
+    "plugin"
+  ],
+  "description": "An mdx plugin to add constant exports.",
+  "author": "James K Nelson <james@frontarm.com> (https://frontarm.com/authors/james-k-nelson/)",
+  "license": "MIT",
+  "repository": {
+    "url": "https://github.com/frontarm/mdx-util"
+  },
+  "devDependencies": {
+    "@mdx-js/mdx": "^0.15.5",
+    "jest": "^23.6.0"
+  },
+  "scripts": {
+    "test": "jest",
+    "prepublish": "npm run test"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  }
+}

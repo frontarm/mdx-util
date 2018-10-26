@@ -5,9 +5,14 @@ mdx-loader
 
 A webpack loader to convert Markdown files into React components.
 
-**mdx-loader** uses [MDXC](https://github.com/jamesknelson/mdxc#using-mdx) under the hood. MDXC was created to allow for markdown-based documentation pages that can embed live examples using JSX. If you'd like a full static-website generation solution using MDX, see [junctions](https://junctions.js.org).
+**mdx-loader** uses [mdx-js/mdx](https://github.com/mdx-js/mdx) under the hood, and follows a batteries-included philosophy, adding a number of super awesome features:
 
-This loader adds markup for syntax highlighting using [Prism.js](http://prismjs.com/), but styles are not included automatically.
+* Emoji support via [remark-emoji](https://www.npmjs.com/package/remark-emoji) (e.g. \:+1\: -> :+1:)
+* Image urls are automatically embedded as images via [remark-images](https://www.npmjs.com/package/remark-images)
+* All headings have `id` slugs added via [remark-slug](https://github.com/remarkjs/remark-slug)
+* Code blocks have markup for syntax highlighting via [prismjs](https://prismjs.com/) and [rehype-prism](https://github.com/mapbox/rehype-prism). *Note: you'll still need to import the prism stylesheet yourself.*
+* Front matter is exported on a `frontMatter` object via [gray-matter](https://github.com/jonschlinkert/gray-matter).
+* A table of contents object is exported on the `tableOfContents` object via [mdx-table-of-contents](./packages/mdx-table-of-contents).
 
 ## Usage
 
@@ -29,10 +34,14 @@ Then, you can import a component from any Markdown file by prepending the filena
 
 ```
 /* eslint-disable import/no-webpack-loader-syntax */
-import DocumentComponent from '!babel-loader!mdx-loader!../pages/index.md'
+import MyDocument from '!babel-loader!mdx-loader!../pages/index.md'
 ```
 
-You can also import documents dynamically using the proposed `import()` syntax. For an example of a statically rendered site using create-react-site and MDX, see [the source](https://github.com/jamesknelson/junctions/tree/master/site) for the [Junctions router site](https://junctions.js.org/tutorial/#Markdown-Components).
+You can also import documents dynamically using the proposed `import()` syntax and [React.lazy()](https://reactjs.org/docs/code-splitting.html#reactlazy), without messing with linter config:
+
+```
+const MyDocument = React.lazy(() => import('!babel-loader!mdx-loader!../pages/index.md'))
+```
 
 ### With Webpack
 
@@ -62,17 +71,17 @@ This assumes you've already got Babel set up with your Webpack project.
 
 ## Using your Markdown components
 
-You can `import` and use your Markdown files like standard components. You can also import a `meta` object that contains your document's front matter. For example:
+You can `import` and use your Markdown files like standard components. You can also import a `frontMatter` object that contains your document's front matter, and a `tableOfContents` object that contains a tree of your document's headings. For example:
 
 ```jsx
 import React, { Component } from 'react'
-import Document, { meta } from './document.md'
+import Document, { frontMatter, tableOfContents } from './document.md'
 
 export default class Something extends Component {
   render() {
     return (
       <div>
-        <h1>{meta.title}</h1>
+        <h1>{frontMatter.title}</h1>
         <Document />
       </div>
     )
@@ -80,13 +89,10 @@ export default class Something extends Component {
 }
 ```
 
-You can also pass props to your component, and configure how the various Markdown elements are rendered. For more details, see the [MDXC documentation](http://mdxc.reactarmory.com/examples/props).
-
 ## Syntax Highlighting
 
 If you'd like to add styles for the syntax highlighting, include a Prism.js stylesheet somewhere within your application:
 
 ```js
-require('prismjs/themes/prism-tomorrow.css');
+import 'prismjs/themes/prism-tomorrow.css'
 ```
-

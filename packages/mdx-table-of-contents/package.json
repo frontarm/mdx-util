@@ -1,0 +1,30 @@
+{
+  "name": "mdx-table-of-contents",
+  "version": "0.1.0",
+  "main": "index.js",
+  "keywords": [
+    "mdx",
+    "plugin",
+    "table-of-contents",
+    "toc"
+  ],
+  "description": "An mdx plugin to generate a table of contents.",
+  "author": "James K Nelson <james@frontarm.com> (https://frontarm.com/authors/james-k-nelson/)",
+  "license": "MIT",
+  "dependencies": {
+    "@mdx-js/mdx": "^0.15.5"
+  },
+  "repository": {
+    "url": "https://github.com/frontarm/mdx-util"
+  },
+  "devDependencies": {
+    "jest": "^23.6.0"
+  },
+  "scripts": {
+    "test": "jest",
+    "prepublish": "npm run test"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  }
+}

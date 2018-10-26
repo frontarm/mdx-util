@@ -1,9 +1,7 @@
 {
   "private": true,
   "devDependencies": {
-    "cross-env": "^5.0.5",
-    "lerna": "^2.1.2",
-    "rimraf": "^2.6.2"
+    "lerna": "^2.2.0"
   },
   "scripts": {
     "build": "lerna run --parallel build",
@@ -12,7 +10,6 @@
     "test:watch": "lerna run --parallel test:watch"
   },
   "workspaces": [
-    "packages/*",
-    "site"
+    "packages/*"
   ]
 }
