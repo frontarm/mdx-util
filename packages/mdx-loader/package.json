@@ -1,6 +1,6 @@
 {
   "name": "mdx-loader",
-  "version": "2.0.0-3",
+  "version": "2.0.0",
   "main": "index.js",
   "keywords": [
     "mdx",
@@ -11,16 +11,21 @@
   "author": "James K Nelson <james@frontarm.com> (https://frontarm.com/authors/james-k-nelson/)",
   "license": "MIT",
   "dependencies": {
-    "@mapbox/rehype-prism": "^0.3.0",
     "@mdx-js/mdx": "^0.15.5",
     "@mdx-js/tag": "^0.15.0",
     "gray-matter": "^4.0.1",
+    "hast-util-to-html": "^4.0.1",
+    "hast-util-to-string": "^1.0.1",
     "mdx-constant": "^0.1.0",
     "mdx-table-of-contents": "^0.1.0",
     "prismjs": "^1.15.0",
+    "refractor": "^2.6.0",
     "remark-emoji": "^2.0.2",
     "remark-images": "^0.8.1",
-    "remark-slug": "^5.1.0"
+    "remark-slug": "^5.1.0",
+    "remark-textr": "^3.0.2",
+    "typographic-base": "^1.0.4",
+    "unist-util-visit": "^1.4.0"
   },
   "repository": {
     "url": "https://github.com/frontarm/mdx-util"

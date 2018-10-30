@@ -1,12 +1,14 @@
 const { getOptions } = require('loader-utils')
 const emoji = require('remark-emoji')
 const images = require('remark-images')
+const textr = require('remark-textr')
 const slug = require('remark-slug')
-const rehypePrism = require('@mapbox/rehype-prism')
 const mdx = require('@mdx-js/mdx')
 const mdxTableOfContents = require('mdx-table-of-contents')
 const mdxExportJSONByDefault = require('mdx-constant')
-const grayMatter = require("gray-matter")
+const grayMatter = require('gray-matter')
+const typographicBase = require('typographic-base')
+const rehypePrism = require('./rehype-prism')
 
 module.exports = async function(source) {
   let result
@@ -18,9 +20,10 @@ module.exports = async function(source) {
         slug,
         images, 
         emoji,
+        [textr, { plugins: [typographicBase] }]
       ],
       hastPlugins: [
-        rehypePrism, { ignoreMissing: true },
+        rehypePrism,
       ],
       compilers: [
         mdxTableOfContents,
