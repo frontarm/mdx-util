@@ -19,7 +19,7 @@ function mdxTableOfContents(options = {}) {
   }
 }
 
-function getInfo(root, { minTableOfContentsLevel = 2, maxTableOfContentsLevel = 3 } = {}) {
+function getInfo(root, { minTableOfContentsLevel = 1, maxTableOfContentsLevel = 3 } = {}) {
   let info = {
     hasFrontMatterExport: false,
     hasTableOfContentsExport: false,
