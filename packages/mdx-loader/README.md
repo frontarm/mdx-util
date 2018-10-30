@@ -13,6 +13,7 @@ A webpack loader to convert Markdown files into React components.
 * Code blocks have markup for syntax highlighting via [prismjs](https://prismjs.com/) and [rehype-prism](https://github.com/mapbox/rehype-prism). *Note: you'll still need to import the prism stylesheet yourself.*
 * Front matter is exported on a `frontMatter` object via [gray-matter](https://github.com/jonschlinkert/gray-matter).
 * A table of contents object is exported on the `tableOfContents` object via [mdx-table-of-contents](./packages/mdx-table-of-contents).
+* Pretty typograhy via [remark-textr](https://github.com/remarkjs/remark-textr) and [typograhic-base](https://github.com/iamstarkov/typographic-base).
 
 ## Usage
 
