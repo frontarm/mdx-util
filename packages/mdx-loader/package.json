@@ -11,8 +11,8 @@
   "author": "James K Nelson <james@frontarm.com> (https://frontarm.com/authors/james-k-nelson/)",
   "license": "MIT",
   "dependencies": {
-    "@mdx-js/mdx": "^0.15.5",
-    "@mdx-js/tag": "^0.15.0",
+    "@mdx-js/mdx": "^0.16.0",
+    "@mdx-js/tag": "^0.16.0",
     "gray-matter": "^4.0.1",
     "loader-utils": "^1.1.0",
     "hast-util-to-html": "^4.0.1",
