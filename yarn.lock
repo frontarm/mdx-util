@@ -752,6 +752,21 @@
     unified "^6.1.6"
     unist-util-visit "^1.3.0"
 
+"@mdx-js/mdx@^0.16.0":
+  version "0.16.0"
+  resolved "https://registry.yarnpkg.com/@mdx-js/mdx/-/mdx-0.16.0.tgz#eb5b908d4903dc657c1921090bae1173166553a2"
+  integrity sha512-HCsRMmDOHmsTfwRxXOovccfk2DCVd4Y7mn9nP5U8R3piIBFw73/Ayb9HoTdyvWnSX66kZkX0nTRnmWGOgT3u0g==
+  dependencies:
+    change-case "^3.0.2"
+    detab "^2.0.0"
+    mdast-util-to-hast "^3.0.0"
+    remark-parse "^5.0.0"
+    remark-squeeze-paragraphs "^3.0.1"
+    to-style "^1.3.3"
+    unified "^6.1.6"
+    unist-builder "^1.0.1"
+    unist-util-visit "^1.3.0"
+
 "@mdx-js/tag@^0.15.0":
   version "0.15.0"
   resolved "https://registry.yarnpkg.com/@mdx-js/tag/-/tag-0.15.0.tgz#a98949206cc21b27a56a11550b41229631eb8b1c"
@@ -760,6 +775,11 @@
     create-react-context "^0.2.2"
     hoist-non-react-statics "^2.5.5"
     prop-types "^15.6.1"
+
+"@mdx-js/tag@^0.16.0":
+  version "0.16.0"
+  resolved "https://registry.yarnpkg.com/@mdx-js/tag/-/tag-0.16.0.tgz#a676132203a484b575c8837cd24dea5e02e91beb"
+  integrity sha512-Myz+KO7IlbWE+ZLcVvqxEGQMbQMOBrblb/j20r1+FOrftHdzDM4f1BFBlmc8ZVjjz07emJWYP0P8o13/1BNZbw==
 
 "@svgr/core@^2.4.1":
   version "2.4.1"
