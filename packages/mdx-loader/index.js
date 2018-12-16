@@ -7,7 +7,7 @@ const mdx = require('@mdx-js/mdx')
 const mdxTableOfContents = require('mdx-table-of-contents')
 const mdxExportJSONByDefault = require('mdx-constant')
 const grayMatter = require('gray-matter')
-const typographicBase = require('typographic-base')
+const typography = require('./typography')
 const rehypePrism = require('./rehype-prism')
 
 module.exports = async function(source) {
@@ -20,7 +20,7 @@ module.exports = async function(source) {
         slug,
         images, 
         emoji,
-        [textr, { plugins: [typographicBase] }]
+        [textr, { plugins: [typography] }]
       ],
       hastPlugins: [
         rehypePrism,

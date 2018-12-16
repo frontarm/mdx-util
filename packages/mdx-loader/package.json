@@ -1,6 +1,6 @@
 {
   "name": "mdx-loader",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "main": "index.js",
   "keywords": [
     "mdx",
@@ -25,7 +25,13 @@
     "remark-images": "^0.8.1",
     "remark-slug": "^5.1.0",
     "remark-textr": "^3.0.2",
-    "typographic-base": "^1.0.4",
+    "textr": "^0.3.0",
+    "typographic-apostrophes": "^1.1.1",
+    "typographic-apostrophes-for-possessive-plurals": "^1.0.5",
+    "typographic-ellipses": "^1.0.11",
+    "typographic-em-dashes": "^1.0.2",
+    "typographic-en-dashes": "^1.0.1",
+    "typographic-quotes": "^1.2.1",
     "unist-util-visit": "^1.4.0"
   },
   "repository": {
