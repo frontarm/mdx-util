@@ -1,6 +1,6 @@
 {
   "name": "mdx.macro",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "main": "mdx.macro.js",
   "keywords": [
     "babel-plugin-macros",
