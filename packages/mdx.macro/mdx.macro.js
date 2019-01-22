@@ -57,6 +57,7 @@ function mdxMacro({ babel, references, state }) {
       `import { MDXTag } from '@mdx-js/tag'`,
       {
         ast: true,
+        filename: "mdx.macro/mdxTagImport.js"
       }
     )
     program.node.body.unshift(mdxTagImport.ast.program.body[0])
