@@ -17,13 +17,13 @@ module.exports = async function(source) {
   const callback = this.async()
   const options = Object.assign(
     {
-      mdPlugins: [
+      remarkPlugins: [
         slug,
         images, 
         emoji,
         [textr, { plugins: [typography] }]
       ],
-      hastPlugins: [
+      rehypePlugins: [
         rehypePrism,
       ],
       compilers: [
