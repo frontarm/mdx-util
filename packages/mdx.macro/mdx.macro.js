@@ -54,7 +54,7 @@ function mdxMacro({ babel, references, state }) {
   if (hasInlineMDX) {
     let program = state.file.path
     let mdxTagImport = babel.transformSync(
-      `import { MDXTag } from '@mdx-js/tag'`,
+      `import { mdx } from '@mdx-js/react'`,
       {
         ast: true,
         filename: "mdx.macro/mdxTagImport.js"
@@ -114,7 +114,7 @@ function transform({ babel, filename, documentFilename }) {
     )
   }
   let documentPath = path.join(filename, '..', documentFilename);
-  let imports = `import React from 'react'\nimport { MDXTag } from '@mdx-js/tag'\n`
+  let imports = `import React from 'react'\nimport { mdx } from '@mdx-js/react'\n`
 
   // In development mode, we want to import the original document so that
   // changes will be picked up and cause a re-build.
