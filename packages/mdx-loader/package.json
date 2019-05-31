@@ -13,6 +13,7 @@
   "dependencies": {
     "@mdx-js/mdx": "^1.0.20",
     "@mdx-js/react": "^1.0.20",
+    "@mdx-js/tag": "^0.20.3",
     "gray-matter": "^4.0.2",
     "hast-util-to-string": "^1.0.1",
     "loader-utils": "^1.1.0",
