@@ -1,6 +1,6 @@
 {
   "name": "mdx.macro",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "main": "mdx.macro.js",
   "keywords": [
     "babel-plugin-macros",
@@ -15,7 +15,7 @@
     "@mdx-js/mdx": "^0.15.5",
     "@mdx-js/tag": "^0.15.0",
     "babel-plugin-macros": "^2.4.2",
-    "babel-preset-react-app": "^5.0.4",
+    "babel-preset-react-app": "^9.0.1",
     "babel-traverse": "^6.26.0",
     "find-cache-dir": "^2.0.0",
     "fs-extra": "^7.0.0",
