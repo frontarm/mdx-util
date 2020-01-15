@@ -14,7 +14,7 @@ mdx-util
     * Emoji support via [remark-emoji](https://www.npmjs.com/package/remark-emoji)
     * Image urls are automatically embedded as images via [remark-images](https://www.npmjs.com/package/remark-images)
     * All headings have `id` slugs added via [remark-slug](https://github.com/remarkjs/remark-slug)
-    * Code blocks have markup for syntax highlighting via [prismjs](https://prismjs.com/) and [rehype-prism](https://github.com/mapbox/rehype-prism). *Note: you'll still need to import the prism stylesheet yourself.*
+    * Code blocks have markup for syntax highlighting via [prismjs](https://prismjs.com/). *Note: you'll still need to import the prism stylesheet yourself.*
     * Front matter is exported on a `frontMatter` object via [gray-matter](https://github.com/jonschlinkert/gray-matter).
     * A table of contents object is exported on the `tableOfContents` object via [mdx-table-of-contents](./packages/mdx-table-of-contents).
 
