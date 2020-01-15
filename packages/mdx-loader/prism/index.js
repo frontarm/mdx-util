@@ -46,7 +46,7 @@ module.exports = options => {
 
     let code = nodeToString(node);
     try {
-      node.properties.className = (parent.properties.className || [])
+      parent.properties.className = (parent.properties.className || [])
         .concat('language-' + normalizedLanguage);
 
       node.properties['data-language'] = normalizedLanguage
