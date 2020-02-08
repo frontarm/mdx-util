@@ -25,6 +25,7 @@ function writeTempFile(name, content) {
 }
 
 function mdxMacro({ babel, references, state }) {
+  let { types: t } = babel
   let { importMDX = [], mdx = [] } = references
 
   importMDX.forEach(referencePath => {
@@ -52,15 +53,23 @@ function mdxMacro({ babel, references, state }) {
   })
 
   if (hasInlineMDX) {
-    let program = state.file.path
-    let mdxTagImport = babel.transformSync(
-      `import { MDXTag } from '@mdx-js/tag'`,
-      {
-        ast: true,
-        filename: "mdx.macro/mdxTagImport.js"
-      }
+    /*
+     * Ensure that we import 'MDXTag' from the '@mdx-js/tag' package, because
+     * that identifier is referenced from the generated code.
+     *
+     * FIXME: Such an import may already exist (because the developer has added
+     * it manually). In that case don't add it.
+     */
+
+    /*
+     * > import { MDXTag } from '@mdx-js/tag';
+     */
+    state.file.path.node.body.unshift(
+      t.importDeclaration(
+        [t.importSpecifier(t.identifier("MDXTag"), t.identifier("MDXTag"))],
+        t.stringLiteral("@mdx-js/tag")
+      )
     )
-    program.node.body.unshift(mdxTagImport.ast.program.body[0])
   }
 }
 

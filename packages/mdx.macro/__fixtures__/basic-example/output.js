@@ -1,4 +1,4 @@
-import { MDXTag } from '@mdx-js/tag';
+import { MDXTag } from "@mdx-js/tag";
 import { test as _test } from './test.js';
 
 const Document = ({
