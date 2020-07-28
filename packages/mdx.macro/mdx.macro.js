@@ -120,7 +120,7 @@ function transform({ babel, filename, documentFilename }) {
   // changes will be picked up and cause a re-build.
   // Note: this relies on files with macros *not* being cached by babel.
   if (process.env.NODE_ENV === "development") {
-    imports += `import '${documentPath}'\n`
+    imports += `import '${documentPath.replace(/\\/g, "\\\\")}' // ${documentPath}\n`
   }
 
   let source = fs.readFileSync(documentPath, 'utf8');
