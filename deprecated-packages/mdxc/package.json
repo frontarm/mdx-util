@@ -34,7 +34,7 @@
     "babel-standalone": "^6.26.0",
     "commander": "^2.9.0",
     "front-matter": "^2.1.2",
-    "markdown-it": "^8.2.2",
+    "markdown-it": "^12.3.2",
     "parsimmon": "^1.2.0",
     "slugify": "^1.1.0"
   }
